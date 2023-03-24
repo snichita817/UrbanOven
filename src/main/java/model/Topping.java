@@ -6,14 +6,18 @@ public class Topping {
         pc
         // per piece
     }
-    private final StringBuilder name;
-    private final double pricePerUnit;
-    private final Measure unitOfMeasure;
+    private StringBuilder name;
+    private double pricePerUnit;
+    private Measure unitOfMeasure;
+    private double doubleQuantity;
+    private int intQuantity;
 
     private Topping(Builder builder) {
         this.name = builder.name;
         this.pricePerUnit = builder.pricePerUnit;
         this.unitOfMeasure = builder.unitOfMeasure;
+        this.doubleQuantity = builder.doubleQuantity;
+        this.intQuantity = builder.intQuantity;
     }
 
     public StringBuilder getName() {
@@ -33,16 +37,23 @@ public class Topping {
         }
         return pricePerUnit * quantity;
     }
-
+    public double getPrice() {
+        double quantity = doubleQuantity + intQuantity;
+        return quantity*pricePerUnit;
+    }
     @Override
     public String toString(){
-        return name + " (" + pricePerUnit + " per " + (unitOfMeasure == Measure.gr ? "gram)" : "piece)");
+        return name + " ("
+                + (this.doubleQuantity + this.intQuantity) + (unitOfMeasure == Measure.gr ? " grams)" : " pieces)")
+                + " +" + getPrice() + " lei.";
     }
 
     public static class Builder {
         private StringBuilder name;
         private double pricePerUnit;
         private Measure unitOfMeasure;
+        private double doubleQuantity;
+        private int intQuantity;
 
         public Builder buildName(String name) {
             this.name = new StringBuilder(name);
@@ -55,6 +66,15 @@ public class Topping {
 
         public Builder buildMeasure(Measure measure) {
             this.unitOfMeasure = measure;
+            return this;
+        }
+        public Builder buildDoubleQuantity(double doubleQuantity) {
+            this.doubleQuantity = doubleQuantity;
+            return this;
+        }
+
+        public Builder buildIntQuantity(int intQuantity) {
+            this.intQuantity = intQuantity;
             return this;
         }
 

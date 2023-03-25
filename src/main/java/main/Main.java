@@ -1,6 +1,6 @@
 package main;
 import model.*;
-
+import service.ToppingService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +23,8 @@ public class Main {
 
         Order order = new Order.Builder().buildProducts(products).build();
 
-        System.out.println(order);
+        ToppingService.listToppings();
+
+        //System.out.println(order);
     }
 }

@@ -45,7 +45,7 @@ public class Topping {
     public String toString(){
         return name + " ("
                 + (this.doubleQuantity + this.intQuantity) + (unitOfMeasure == Measure.gr ? " grams)" : " pieces)")
-                + " +" + getPrice() + " lei.";
+                + " +" + String.format("%.2f", getPrice()) + " lei.";
     }
 
     public static class Builder {

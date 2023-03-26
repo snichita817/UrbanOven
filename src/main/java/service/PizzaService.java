@@ -59,6 +59,7 @@ public class PizzaService {
         System.out.println("1. Add topping;");
         System.out.println("2. Remove topping;");
         System.out.println("3. Modify topping quantity;");
+        System.out.println("4. Modify pizza size;");
         System.out.println("0. Back");
     }
 
@@ -85,6 +86,10 @@ public class PizzaService {
                 case 3: {
                     ToppingService.modifyToppingQuantity(pizza.getToppings());
                     pizza.recalculatePrice();
+                    break;
+                }
+                case 4: {
+                    modifyPizzaSize(pizza);
                     break;
                 }
                 case 0: {
@@ -174,7 +179,7 @@ public class PizzaService {
 
     public static void listPizzas(List<Pizza> pizzas) {
         for(int i = 0; i< pizzas.size(); i++) {
-            System.out.println(String.format( "%d. %s;", (i+1), pizzas.get(i).getName()));
+            System.out.println(String.format( "%d. %s    ->    PRICE: " + String.format("%.2f", pizzas.get(i).getPrice()), (i+1), pizzas.get(i).getName()));
         }
     }
 

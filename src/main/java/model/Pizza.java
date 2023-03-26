@@ -43,7 +43,6 @@ public class Pizza extends Product {
         private Builder buildPrice() {
             this.price = 5;
             for(Topping topping : toppings) {
-                System.out.println(this.price);
                 this.price = this.price + topping.getPrice();
             }
             return this;

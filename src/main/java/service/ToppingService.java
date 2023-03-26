@@ -82,6 +82,8 @@ public class ToppingService {
         return option-1;
     }
 
+
+    // =============== TOPPINGS FOR PIZZA =============== //
     public static Topping getSauce(double quantity) {
         Topping tomatoSauce = new Topping.Builder()
                 .buildName("Tomato sauce")
@@ -265,16 +267,87 @@ public class ToppingService {
     public static List<Topping> getPizzaToppings() {
         List<Topping> toppings = new ArrayList<>();
 
-        toppings.add(getSauce(90));                       // SAUCE
-        toppings.add(getMozzarella(80));                  // CHEESE
-        toppings.add(getMushroom(70));                    // MUSHROOM
-        toppings.add(getPepperoni(10));                   // PEPPERONI
-        toppings.add(getOnion(100));                      // ONION
-        toppings.add(getGreenPepper(50));                 // GREEN PEPPER
-        toppings.add(getOlives(50));                      // OLIVES
-        toppings.add(getHam(80));                         // HAM
-        toppings.add(getPineapple(10));                   // PINEAPPLE
-        toppings.add(getBacon(80));                       // BACON
+        toppings.add(getSauce());                       // SAUCE
+        toppings.add(getMozzarella());                  // CHEESE
+        toppings.add(getMushroom());                    // MUSHROOM
+        toppings.add(getPepperoni());                   // PEPPERONI
+        toppings.add(getOnion());                       // ONION
+        toppings.add(getGreenPepper());                 // GREEN PEPPER
+        toppings.add(getOlives());                      // OLIVES
+        toppings.add(getHam());                         // HAM
+        toppings.add(getPineapple());                   // PINEAPPLE
+        toppings.add(getBacon());                       // BACON
+
+        return toppings;
+    }
+
+
+    // =============== TOPPINGS FOR DRINKS =============== //
+    public static Topping getIce() {
+        Topping ice = new Topping.Builder()
+                .buildName("Ice")
+                .buildMeasure(Measure.pc)
+                .buildPrice(0.5)
+                .buildIntQuantity(5)
+                .build();
+        return ice;
+    }
+
+    public static Topping getLemon() {
+        Topping lemon = new Topping.Builder()
+                .buildName("Lemon")
+                .buildMeasure(Measure.pc)
+                .buildPrice(0.7)
+                .buildIntQuantity(5)
+                .build();
+        return lemon;
+    }
+
+    public static Topping getMint() {
+        Topping mint = new Topping.Builder()
+                .buildName("Mint")
+                .buildMeasure(Measure.pc)
+                .buildPrice(0.8)
+                .buildIntQuantity(5)
+                .build();
+        return mint;
+    }
+
+    public static Topping getGinger() {
+        Topping ginger = new Topping.Builder()
+                .buildName("Ginger")
+                .buildMeasure(Measure.gr)
+                .buildPrice(0.8)
+                .buildIntQuantity(5)
+                .build();
+        return ginger;
+    }
+
+    public static Topping getSugar() {
+        Topping sugar = new Topping.Builder()
+                .buildName("Sugar")
+                .buildMeasure(Measure.gr)
+                .buildPrice(0.4)
+                .buildDoubleQuantity(23.40)
+                .build();
+        return sugar;
+    }
+
+    public static Topping getLime() {
+        Topping lime = new Topping.Builder()
+                .buildName("Lime")
+                .buildMeasure(Measure.pc)
+                .buildPrice(0.8)
+                .buildDoubleQuantity(6)
+                .build();
+        return lime;
+    }
+
+    public static List<Topping> getDrinkToppings() {
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getIce());
+        toppings.add(getLemon());
+        toppings.add(getMint());
 
         return toppings;
     }

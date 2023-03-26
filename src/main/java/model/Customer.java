@@ -11,6 +11,8 @@ public class Customer extends Person{
     }
 
     private Customer (Builder builder) {
+        this.userName = builder.userName;
+        this.password = builder.password;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.phoneNumber = builder.phoneNumber;
@@ -19,6 +21,8 @@ public class Customer extends Person{
     }
 
     public static class Builder {
+        private StringBuilder password;
+        private StringBuilder userName;
         private StringBuilder firstName;
         private StringBuilder lastName;
         private StringBuilder address;
@@ -27,6 +31,16 @@ public class Customer extends Person{
 
         public Builder buildFirstName(String firstName) {
             this.firstName = new StringBuilder(firstName);
+            return this;
+        }
+
+        public Builder buildUserName(String userName) {
+            this.userName = new StringBuilder(userName);
+            return this;
+        }
+
+        public Builder buildPassword(String password) {
+            this.password = new StringBuilder(password);
             return this;
         }
 

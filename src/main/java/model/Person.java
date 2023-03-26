@@ -2,10 +2,11 @@ package model;
 
 public class Person {
     protected StringBuilder firstName;
+    protected StringBuilder userName;
     protected StringBuilder lastName;
     protected StringBuilder address;
     protected StringBuilder phoneNumber;
-
+    protected StringBuilder password;
     @Override
     public String toString() {
         String toReturn = "INFO:\n";

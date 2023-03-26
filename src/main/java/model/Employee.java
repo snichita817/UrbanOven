@@ -7,6 +7,8 @@ public class Employee extends Person{
     private StringBuilder ranking;
 
     private Employee(Builder builder) {
+        this.password = builder.password;
+        this.userName = builder.userName;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.phoneNumber = builder.phoneNumber;
@@ -16,12 +18,25 @@ public class Employee extends Person{
     }
 
     public static class Builder{
+        private StringBuilder password;
+        private StringBuilder userName;
         private StringBuilder firstName;
         private StringBuilder lastName;
         private StringBuilder address;
         private StringBuilder phoneNumber;
         public int salary;
         public StringBuilder ranking;
+
+        public Builder buildUserName(String userName) {
+            this.userName = new StringBuilder(userName);
+            return this;
+        }
+
+        public Builder buildPassword(String password) {
+            this.password = new StringBuilder(password);
+            return this;
+        }
+
         public Builder buildFirstName(String firstName) {
             this.firstName = new StringBuilder(firstName);
             return this;

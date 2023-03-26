@@ -7,15 +7,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ToppingService {
-    public final static Scanner scanner = new Scanner(System.in);
-    public static Topping getTopping() {
-        List<Topping> toppings = getToppings();
+    private final static Scanner scanner = new Scanner(System.in);
+    public static Topping getTopping(List<Topping> toppings) {
         System.out.println("==========   TOPPING CHOOSING MENU   ==========");
         int option;
         while(true) {
-            listToppings(getToppings());
+            listToppings(toppings);
             System.out.println("Choose a topping from list below:");
-            System.out.print("Option (1-10): ");
+            System.out.print(String.format("Option (1-%d): ", toppings.size()));
             option = scanner.nextInt();
             if (option < 1 || option > toppings.size()) {
                 System.out.print("\u001B[31m");
@@ -25,10 +24,46 @@ public class ToppingService {
                 break;
             }
         }
-        return getToppings().get(option-1);
+        return toppings.get(option-1);
     }
 
-    public static void removeTopping(List<Topping> toppings) {
+    public static void modifyToppingQuantity(List<Topping> toppings) {
+        System.out.println("Current toppings:");
+        int option;
+        while (true) {
+            listToppings(toppings);
+            System.out.println("Choose a topping to edit from the list below: ");
+            System.out.print( String.format("Option (1-%d): ", toppings.size()));
+            option = scanner.nextInt();
+
+            if (option < 1 || option > toppings.size()) {
+                System.out.print("\u001B[31m");
+                System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + toppings.size() + ".");
+                System.out.print("\u001B[0m");
+            } else {
+                Topping topping = toppings.get(option-1);
+
+                System.out.print("Select a quantity ");
+
+                if(Measure.pc == topping.getUnitOfMeasure()) {
+                    System.out.print("(pieces): ");
+                    int newQuantity = scanner.nextInt();
+                    topping.setIntQuantity(newQuantity);
+                }
+                else {
+                    System.out.print("(grams): ");
+                    double newQuantity = scanner.nextDouble();
+                    topping.setDoubleQuantity(newQuantity);
+                }
+                System.out.println("Quantity of " + topping.getName() + " modified!");
+                break;
+            }
+
+
+        }
+    }
+
+    public static int removeTopping(List<Topping> toppings) {
         System.out.println("Current toppings:");
         int option;
         while(true) {
@@ -44,7 +79,7 @@ public class ToppingService {
                 break;
             }
         }
-        toppings.remove(option-1);
+        return option-1;
     }
 
     public static Topping getSauce(double quantity) {
@@ -227,7 +262,7 @@ public class ToppingService {
                 .build();
         return bacon;
     }
-    public static List<Topping> getToppings() {
+    public static List<Topping> getPizzaToppings() {
         List<Topping> toppings = new ArrayList<>();
 
         toppings.add(getSauce(90));                       // SAUCE

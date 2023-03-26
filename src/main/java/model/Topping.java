@@ -12,6 +12,18 @@ public class Topping {
     private double doubleQuantity;
     private int intQuantity;
 
+    public Measure getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setDoubleQuantity(double doubleQuantity) {
+        this.doubleQuantity = doubleQuantity;
+    }
+
+    public void setIntQuantity(int intQuantity) {
+        this.intQuantity = intQuantity;
+    }
+
     private Topping(Builder builder) {
         this.name = builder.name;
         this.pricePerUnit = builder.pricePerUnit;

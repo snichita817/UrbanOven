@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza extends Product {
@@ -17,7 +18,7 @@ public class Pizza extends Product {
         toReturn = toReturn + "Toppings:\n";
         toReturn = toReturn + listToppings();
         toReturn = toReturn + "Pizza size: " + size + " cm.\n";
-        toReturn = toReturn + "Pizza price: " + price + " lei.\n";
+        toReturn = toReturn + "Pizza price: " + String.format("%.2f", price) + " lei.\n";
         return toReturn;
     }
 
@@ -30,7 +31,7 @@ public class Pizza extends Product {
             this.name = new StringBuilder(name);
             return this;
         }
-        public Builder buildTopping(List<Topping> toppings) {
+        public Builder buildTopping(ArrayList<Topping> toppings) {
             this.toppings = toppings;
             return this;
         }
@@ -40,8 +41,9 @@ public class Pizza extends Product {
         }
 
         private Builder buildPrice() {
-            this.price = 5 + this.size/10;
+            this.price = 5;
             for(Topping topping : toppings) {
+                System.out.println(this.price);
                 this.price = this.price + topping.getPrice();
             }
             return this;

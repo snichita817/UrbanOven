@@ -1,10 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
     protected StringBuilder name;
-    protected List<Topping> toppings;
+    protected List<Topping> toppings = new ArrayList<>();
     protected double price;
     protected int size;
 
@@ -27,7 +28,13 @@ public class Product {
             return toReturn;
         }
     }
-
+    public void recalculatePrice() {
+        this.price = 5 + this.size/2;
+        for(Topping topping : toppings) {
+            System.out.println(this.price);
+            this.price = this.price + topping.getPrice();
+        }
+    }
     // Method to add a specific topping for a pizza
     public void addTopping(Topping newTopping) throws IllegalArgumentException {
         if (newTopping == null) {
@@ -67,7 +74,7 @@ public class Product {
     }
 
     public void setSize(int size) {
-        this.price = (this.price - this.size/10) + (this.price + size/10);
         this.size = size;
+        recalculatePrice();
     }
 }

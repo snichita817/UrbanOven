@@ -17,6 +17,14 @@ public class Person {
         return toReturn;
     }
 
+    public StringBuilder getUserName() {
+        return userName;
+    }
+
+    public StringBuilder getPassword() {
+        return password;
+    }
+
     public StringBuilder getFirstName() {
         return firstName;
     }

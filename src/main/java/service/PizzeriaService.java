@@ -1,7 +1,10 @@
 package service;
 
+import model.Person;
 import model.Pizzeria;
+import model.Customer;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PizzeriaService {
@@ -16,8 +19,26 @@ public class PizzeriaService {
         System.out.print("Select an option: ");
     }
 
+    public static Person login() {
+        System.out.println("Enter your login details");
+        System.out.print("Username: ");
+        String username = scanner.next();
+        scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
 
+        List<Person> listOfPeople = pizzeria.getPeople();
 
+        for(Person person : listOfPeople) {
+            if( person.getUserName().compareTo(new StringBuilder(username)) == 0 && person.getPassword().compareTo(new StringBuilder(password)) == 0)
+            {
+                return person;
+            }
+
+        }
+        return null;
+    }
+    // TODO: Verify that usernames are unique
     public static void main(String[] args) {
         while(true)
         {
@@ -25,6 +46,15 @@ public class PizzeriaService {
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
+                    Person currentLogin = login();
+                    if(currentLogin == null)
+                    {
+                        System.out.println("Username or password is incorrect!");
+                        break;
+                        // PART where USER IS LOGGED IN
+                    } else if (currentLogin instanceof Customer) {
+                            CustomerService.serviceScreen((Customer)currentLogin);
+                    }
                     break;
                 case 2:
                     pizzeria.addPeople(PersonService.newPerson());

@@ -31,13 +31,13 @@ public class Order {
         // print out pizzas first
         for(Product product : products) {
             if(product instanceof Pizza) {
-                toReturn = toReturn + product + "\n";
+                toReturn = toReturn + ((Pizza) product).toString() + "\n";
             }
         }
 
         for(Product product : products) {
             if(product instanceof Drink) {
-                toReturn = toReturn + product + "\n";
+                toReturn = toReturn + ((Drink) product ).toString()+ "\n";
             }
         }
 

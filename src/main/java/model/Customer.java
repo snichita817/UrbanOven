@@ -1,13 +1,18 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends Person{
-    private List<Order> orderHistory;
+    private List<Order> orderHistory = new ArrayList<>();
 
     public void addOrder(Order order) {
         this.orderHistory.add(order);
         System.out.println("Order saved to the order history");
+    }
+
+    public List<Order> getOrderHistory() {
+        return orderHistory;
     }
 
     private Customer (Builder builder) {
@@ -27,7 +32,7 @@ public class Customer extends Person{
         private StringBuilder lastName;
         private StringBuilder address;
         private StringBuilder phoneNumber;
-        private List<Order> orderHistory;
+        private List<Order> orderHistory = new ArrayList<>();
 
         public Builder buildFirstName(String firstName) {
             this.firstName = new StringBuilder(firstName);
@@ -56,10 +61,10 @@ public class Customer extends Person{
             this.phoneNumber = new StringBuilder(phoneNumber);
             return this;
         }
-        public Builder buildOrderHistory(List<Order> orderHistory) {
+/*        public Builder buildOrderHistory(List<Order> orderHistory) {
             this.orderHistory = orderHistory;
             return this;
-        }
+        }*/
 
         public Customer build() {
             return new Customer(this);

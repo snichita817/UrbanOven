@@ -19,4 +19,8 @@ public class Pizzeria {
         this.people.add(people);
     }
 
+    public List<Person> getPeople() {
+        return this.people;
+    }
+
 }

@@ -1,10 +1,9 @@
 package service;
 
-import model.Customer;
-import model.Employee;
-import model.Person;
+import model.*;
 
 import java.io.Console;
+import java.util.List;
 import java.util.Scanner;
 
 public class PersonService {
@@ -41,6 +40,14 @@ public class PersonService {
                 .build();
 
         return customer;
+    }
+
+    public static void printOrderHistory(Customer customer) {
+        List<Order> orderList = customer.getOrderHistory();
+        System.out.println("Your current orders:");
+        for(int i = 0; i<orderList.size(); i++) {
+            System.out.println(orderList.get(i));
+        }
     }
 
 }

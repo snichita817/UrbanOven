@@ -71,7 +71,7 @@ public class PizzaService {
         {
             System.out.println("Your pizza: ");
             System.out.println(pizza);
-            System.out.println("Select an option (1-3): ");
+            System.out.println("Select an option (1-4): ");
             printModifyMenu();
             option = scanner.nextInt();
             switch (option) {

@@ -1,5 +1,9 @@
 package model;
 
+import service.DrinkService;
+import service.PizzaService;
+import service.PizzeriaService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -12,6 +16,8 @@ public class Pizzeria {
     public Pizzeria() {
         this.people = new Vector<>();
         this.products = new ArrayList<>();
+        products.addAll(PizzaService.getPizzas(true));
+        products.addAll(DrinkService.getDrinks(true));
         this.allOrders = new ArrayList<>();
     }
 

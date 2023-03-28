@@ -2,9 +2,11 @@ package service;
 
 import model.Pizza;
 import model.Product;
+import model.ProductComparator;
 import model.Topping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,12 +34,12 @@ public class PizzaService {
     }
 
     public static Pizza getPizza() {
-        List<Pizza> pizzas = getPizzas();
-        System.out.println("==========   PIZZA CHOOSING MENU   ==========");
+        List<Pizza> pizzas = getPizzas(false);
+        System.out.println("\t\t\t==========   PIZZA CHOOSING MENU   ==========");
         int option;
         Product pizza = null;
         while(true) {
-            listPizzas(getPizzas());
+            listPizzas(pizzas);
             System.out.println("Choose a pizza from the list below:");
             System.out.print( String.format("Option (1-%d): ", pizzas.size()));
             option = scanner.nextInt();
@@ -166,7 +168,7 @@ public class PizzaService {
                 .build();
         return (Pizza)pizza;
     }
-    public static List<Pizza> getPizzas() {
+    public static List<Pizza> getPizzas(boolean isStart) {
         List<Pizza> pizzas = new ArrayList<>();
         pizzas.add(getMargherita());
         pizzas.add(getPepperoni());
@@ -174,12 +176,43 @@ public class PizzaService {
         pizzas.add(getHawaiian());
         pizzas.add(getMeatLovers());
 
+        // will only print out this if it's not instantiating the pizzeria class
+        if(!isStart)
+        {
+            System.out.println("How would you like your pizzas to be printed?");
+            System.out.println("1 -> Default");
+            System.out.println("2 -> Price (low - high)");
+            System.out.println("3 -> Price (high - low)");
+            System.out.print("Option: ");
+            int option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    Collections.sort(pizzas, new ProductComparator(true));
+                    break;
+                case 3:
+                    Collections.sort(pizzas, new ProductComparator(false));
+                    break;
+
+            }
+        }
+
         return pizzas;
     }
 
     public static void listPizzas(List<Pizza> pizzas) {
+
         for(int i = 0; i< pizzas.size(); i++) {
             System.out.println(String.format( "%d. %s    ->    PRICE: " + String.format("%.2f", pizzas.get(i).getPrice()), (i+1), pizzas.get(i).getName()));
+        }
+    }
+
+    public static void listPizzas(List<Pizza> pizzas, boolean inAscending) {
+        Collections.sort(pizzas, new ProductComparator(inAscending));
+        for(int i = 0; i< pizzas.size(); i++) {
+            System.out.println(String.format( "\t\t\t%d. %s    ->    PRICE: " + String.format("%.2f", pizzas.get(i).getPrice()), (i+1), pizzas.get(i).getName()));
         }
     }
 

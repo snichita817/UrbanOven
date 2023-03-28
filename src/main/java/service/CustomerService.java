@@ -11,9 +11,12 @@ public class CustomerService {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void userScreen() {
+        System.out.println("\t\t\t==========================================================");
         System.out.println("\t\t\t1. Create new order");
         System.out.println("\t\t\t2. View order history");
+        System.out.println("\t\t\t3. View menu");
         System.out.println("\t\t\t0. Exit");
+        System.out.println("\t\t\t==========================================================");
         System.out.print("Select an option: ");
     }
 
@@ -50,6 +53,9 @@ public class CustomerService {
                             System.out.println(order);
                     }
                     break;
+                }
+                case 3: {
+
                 }
                 case 0: {
                     return;

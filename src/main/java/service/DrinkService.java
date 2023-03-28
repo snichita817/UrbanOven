@@ -2,9 +2,11 @@ package service;
 
 import model.Drink;
 import model.Product;
+import model.ProductComparator;
 import model.Topping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,12 +38,12 @@ public class DrinkService {
     }
 
     public static Drink getDrink() {
-        List<Drink> drinks = getDrinks();
-        System.out.println("==========   DRINK CHOOSING MENU   ==========");
+        List<Drink> drinks = getDrinks(false);
+        System.out.println("\t\t\t==========   DRINK CHOOSING MENU   ==========");
         int option;
         Product drink = null;
         while(true) {
-            listDrinks(getDrinks());
+            listDrinks(drinks);
             System.out.println("Choose a drink from the list below:");
             System.out.print( String.format("Option (1-%d): ", drinks.size()));
             option = scanner.nextInt();
@@ -172,19 +174,43 @@ public class DrinkService {
         return (Drink) mojito;
     }
 
-    public static List<Drink> getDrinks() {
+    public static List<Drink> getDrinks(boolean isStart) {
         List<Drink> drinks = new ArrayList<>();
         drinks.add(getLemonade());
         drinks.add(getFanta());
         drinks.add(getGinAndTonic());
         drinks.add(getMojito());
 
+        // will only print out this if it's not instantiating the pizzeria class
+        if (!isStart)
+        {
+            System.out.println("How would you like your drinks to be printed?");
+            System.out.println("1 -> Default");
+            System.out.println("2 -> Price (low - high)");
+            System.out.println("3 -> Price (high - low)");
+            System.out.print("Option: ");
+            int option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    Collections.sort(drinks, new ProductComparator(true));
+                    break;
+                case 3:
+                    Collections.sort(drinks, new ProductComparator(false));
+                    break;
+
+            }
+        }
+
+
         return drinks;
     }
 
     public static void listDrinks(List<Drink> drinks) {
         for(int i = 0; i< drinks.size(); i++) {
-            System.out.println(String.format( "%d. %s    ->    PRICE: " + String.format("%.2f", drinks.get(i).getPrice()), (i+1), drinks.get(i).getName()));
+            System.out.println(String.format( "\t\t\t%d. %s    ->    PRICE: " + String.format("%.2f", drinks.get(i).getPrice()), (i+1), drinks.get(i).getName()));
         }
     }
 }

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public class Product implements Comparable<Product> {
     protected StringBuilder name;
     protected List<Topping> toppings = new ArrayList<>();
     protected double price;
@@ -76,5 +76,9 @@ public class Product {
     public void setSize(int size) {
         this.size = size;
         recalculatePrice();
+    }
+    @Override
+    public int compareTo(Product other) {
+        return Double.compare(this.price, other.getPrice());
     }
 }

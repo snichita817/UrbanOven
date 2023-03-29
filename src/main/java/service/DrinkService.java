@@ -61,11 +61,12 @@ public class DrinkService {
         return (Drink)drink;
     }
 
-    public static void printModifyMenu() {
+    /*public static void printModifyMenu() {
         System.out.println("1. Add topping;");
         System.out.println("2. Remove topping;");
         System.out.println("3. Modify topping quantity;");
         System.out.println("4. Modify drink size;");
+        System.out.println("5. Delete drink;");
         System.out.println("0. Back");
     }
 
@@ -77,7 +78,7 @@ public class DrinkService {
         {
             System.out.println("Your drink: ");
             System.out.println(drink);
-            System.out.println("Select an option (1-3): ");
+            System.out.println("Select an option (1-5): ");
             printModifyMenu();
             option = scanner.nextInt();
             switch (option) {
@@ -112,7 +113,7 @@ public class DrinkService {
             }
         }
 
-    }
+    }*/
 
     public static Drink getLemonade() {
         Product lemonade = new Drink.Builder()
@@ -148,7 +149,7 @@ public class DrinkService {
     public static Drink getGinAndTonic() {
         Product ginAndTonic = new Drink.Builder()
                 .buildName("Gin and Tonic")
-                .buildWithAlcohol(false)
+                .buildWithAlcohol(true)
                 .buildTopping(
                         new ArrayList<>(
                                 List.of(ToppingService.getIce(),

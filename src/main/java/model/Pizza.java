@@ -17,7 +17,14 @@ public class Pizza extends Product {
         toReturn = toReturn + name + "\n";
         toReturn = toReturn + "Toppings:\n";
         toReturn = toReturn + listToppings();
-        toReturn = toReturn + "Pizza size: " + size + " cm.\n";
+
+        if(this.size!=0)
+        {
+            toReturn = toReturn + "Pizza size: " + size + " slices.\n";
+        }
+        else {
+            toReturn = toReturn + "Pizza size: 6/8/10 slices.\n";
+        }
         toReturn = toReturn + "Pizza price: " + String.format("%.2f", price) + " lei.\n";
         return toReturn;
     }

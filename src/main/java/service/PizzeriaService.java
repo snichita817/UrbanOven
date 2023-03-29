@@ -3,6 +3,7 @@ package service;
 import model.Person;
 import model.Pizzeria;
 import model.Customer;
+import model.Product;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,12 @@ public class PizzeriaService {
         System.out.println("\t\t\t0. Exit");
         System.out.println("\t\t\t==========================================================");
         System.out.print("Select an option: ");
+    }
+
+    public static void listMenu() {
+        System.out.println("\t\t==============  URBANOVEN MENU  ==============");
+        List<Product> products = pizzeria.getProducts();
+        ProductService.listProducts(products);
     }
 
     public static Person login() {

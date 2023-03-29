@@ -21,6 +21,10 @@ public class Pizzeria {
         this.allOrders = new ArrayList<>();
     }
 
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
     public void addPeople(Person people) {
         this.people.add(people);
     }

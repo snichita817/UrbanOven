@@ -1,6 +1,7 @@
 package service;
 import model.Customer;
 import model.Order;
+import model.Pizzeria;
 import model.Product;
 
 import java.util.ArrayList;
@@ -61,7 +62,9 @@ public class CustomerService {
                     break;
                 }
                 case 3: {
+                    PizzeriaService.listMenu();
 
+                    break;
                 }
                 case 0: {
                     return;

@@ -47,7 +47,7 @@ public class Order {
             }
         }
 
-        toReturn = toReturn + "Total cost: " + this.totalCost + "\n";
+        toReturn = toReturn + "Total cost: " + String.format("%.2f", this.totalCost) + "\n";
         toReturn = toReturn + "Ordered at: " + this.orderTime + "\n";
         toReturn = toReturn + "Expect your delivery at: " + this.expectedTime + "\n";
         return  toReturn;

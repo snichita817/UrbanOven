@@ -30,24 +30,30 @@ public class OrderService {
 
     public static Pizza returnPizza(List<Product> products) {
         int no_pizzas = 0;
+        List<Pizza> pizzas = new ArrayList<>();
         for(int i = 0; i<products.size(); i++) {
             if(products.get(i) instanceof Pizza) {
                 no_pizzas += 1;
+                pizzas.add((Pizza) products.get(i));
                 System.out.println( String.format( "Pizza no. %d\n", (i+1) ) + ( ((Pizza) products.get(i)).toString()));
             }
         }
 
         while (true)
         {
+            if(no_pizzas == 0) {
+                return null;
+            }
             System.out.print( String.format("Option (%d - %d): ", 1, no_pizzas) );
             int option = scanner.nextInt();
+
             if(option < 1 || option > no_pizzas) {
                 System.out.print("\u001B[31m");
                 System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + no_pizzas + ".");
                 System.out.print("\u001B[0m");
             }
             else {
-                return (Pizza)products.get(option-1);
+                return pizzas.get(option-1);
             }
         }
 
@@ -65,8 +71,12 @@ public class OrderService {
         }
         while (true)
         {
+            if (no_drinks == 0) {
+                return null;
+            }
             System.out.print( String.format("Option (%d - %d): ", 1, no_drinks) );
             int option = scanner.nextInt();
+
             if(option < 1 || option > no_drinks) {
                 System.out.print("\u001B[31m");
                 System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + no_drinks + ".");
@@ -91,13 +101,31 @@ public class OrderService {
                     // 1. print list of pizzas
                     // 2. select a pizza from a list
                     // 3. modify pizza with PizzaService
-                    PizzaService.modifyPizza(returnPizza(products), products);
+                    Pizza selectedPizza = returnPizza(products);
+                    if(selectedPizza != null)
+                    {
+                        ProductService.modifyProduct(selectedPizza, products);
+                    }
+                    else {
+                        System.out.print("\u001B[31m");
+                        System.out.println("You have no products of this type in the basket!");
+                        System.out.print("\u001B[0m");
+                    }
                     break;
                 case 2:
                     // print list of drinks
                     // select a drink from a list
                     // modify drink with DrinkService
-                    DrinkService.modifyDrink(returnDrink(products), products);
+                    Drink selectedDrink = returnDrink(products);
+                    if(selectedDrink!= null)
+                    {
+                        ProductService.modifyProduct(selectedDrink, products);
+                    }
+                    else {
+                        System.out.print("\u001B[31m");
+                        System.out.println("You have no products of this type in the basket!");
+                        System.out.print("\u001B[0m");
+                    }
                     break;
                 case 0:
                     return;
@@ -111,6 +139,7 @@ public class OrderService {
     public static void orderScreen(List<Product> products) {
         int option;
         while(true) {
+            ProductService.listProducts(products);
             chooseOrder();
             option = scanner.nextInt();
 
@@ -122,7 +151,14 @@ public class OrderService {
                     products.add((Drink) DrinkService.getDrink());
                     break;
                 case 3: {
-                    modifyProduct(products);
+                    if(products.size() != 0) {
+                        modifyProduct(products);
+                    }
+                    else {
+                        System.out.print("\u001B[31m");
+                        System.out.println("You have no products in your order!");
+                        System.out.print("\u001B[0m");
+                    }
                     break;
                 }
                 case 0:

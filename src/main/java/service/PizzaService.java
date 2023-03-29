@@ -57,16 +57,16 @@ public class PizzaService {
         return (Pizza)pizza;
     }
 
-    public static void printModifyMenu() {
+/*    public static void printModifyMenu() {
         System.out.println("1. Add topping;");
         System.out.println("2. Remove topping;");
         System.out.println("3. Modify topping quantity;");
         System.out.println("4. Modify pizza size;");
         System.out.println("5. Delete this pizza;");
         System.out.println("0. Back");
-    }
+    }*/
 
-    public static void modifyPizza(Pizza pizza, List<Product> products) {
+    /*public static void modifyPizza(Pizza pizza, List<Product> products) {
         System.out.println("==========   PIZZA PERSONALIZER   ==========");
         int option;
 
@@ -109,7 +109,7 @@ public class PizzaService {
             }
         }
 
-    }
+    }*/
 
     public static Pizza getMargherita(){
         Product pizza = new Pizza.Builder()

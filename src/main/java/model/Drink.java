@@ -14,7 +14,13 @@ public class Drink extends Product{
         }
         toReturn = toReturn + "\nAdded toppings:\n";
         toReturn = toReturn + listToppings();
-        toReturn = toReturn + "Drink size: " + this.size + "mL.\n";
+        if(this.size != 0)
+        {
+            toReturn = toReturn + "Drink size: " + this.size + "mL.\n";
+        }
+        else {
+            toReturn = toReturn + "Drink size: 250/350/500 mL.\n";
+        }
         toReturn = toReturn + "Drink price: " + this.price + " lei.\n";
         return toReturn;
     }

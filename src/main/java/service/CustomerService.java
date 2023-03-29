@@ -32,8 +32,14 @@ public class CustomerService {
                 .build();
 
         // adding the order to the customer orders list
-        customer.addOrder(newOrder);
-        System.out.println("Your order was added successfully!");
+        if(newOrder.getProducts().size() != 0)
+        {
+            customer.addOrder(newOrder);
+            System.out.println("Your order was added successfully!");
+        }
+        else {
+            System.out.println("Can't add an order with zero products!");
+        }
     }
     public static void serviceScreen(Customer customer) {
         while(true) {

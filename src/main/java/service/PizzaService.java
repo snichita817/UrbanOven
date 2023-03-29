@@ -62,10 +62,11 @@ public class PizzaService {
         System.out.println("2. Remove topping;");
         System.out.println("3. Modify topping quantity;");
         System.out.println("4. Modify pizza size;");
+        System.out.println("5. Delete this pizza;");
         System.out.println("0. Back");
     }
 
-    public static void modifyPizza(Pizza pizza) {
+    public static void modifyPizza(Pizza pizza, List<Product> products) {
         System.out.println("==========   PIZZA PERSONALIZER   ==========");
         int option;
 
@@ -73,7 +74,7 @@ public class PizzaService {
         {
             System.out.println("Your pizza: ");
             System.out.println(pizza);
-            System.out.println("Select an option (1-4): ");
+            System.out.println("Select an option (1-5): ");
             printModifyMenu();
             option = scanner.nextInt();
             switch (option) {
@@ -93,6 +94,9 @@ public class PizzaService {
                 case 4: {
                     modifyPizzaSize(pizza);
                     break;
+                }
+                case 5: {
+                    ProductService.deleteProduct(pizza, products);
                 }
                 case 0: {
                     return;

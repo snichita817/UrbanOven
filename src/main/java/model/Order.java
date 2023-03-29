@@ -14,6 +14,12 @@ public class Order {
     private StringBuilder orderStatus;
     private Date orderTime;
     private Date expectedTime;
+
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
     private Order (Builder builder) {
         this.orderId = ++orderNumber;
         this.customer = builder.customer;

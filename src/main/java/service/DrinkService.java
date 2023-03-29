@@ -69,7 +69,7 @@ public class DrinkService {
         System.out.println("0. Back");
     }
 
-    public static void modifyDrink(Drink drink) {
+    public static void modifyDrink(Drink drink, List<Product> products) {
         System.out.println("==========   DRINK PERSONALIZER   ==========");
         int option;
 
@@ -97,6 +97,9 @@ public class DrinkService {
                 case 4: {
                     modifyDrinkSize(drink);
                     break;
+                }
+                case 5: {
+                    ProductService.deleteProduct(drink, products);
                 }
                 case 0: {
                     return;

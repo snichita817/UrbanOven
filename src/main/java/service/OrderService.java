@@ -91,13 +91,13 @@ public class OrderService {
                     // 1. print list of pizzas
                     // 2. select a pizza from a list
                     // 3. modify pizza with PizzaService
-                    PizzaService.modifyPizza(returnPizza(products));
+                    PizzaService.modifyPizza(returnPizza(products), products);
                     break;
                 case 2:
                     // print list of drinks
                     // select a drink from a list
                     // modify drink with DrinkService
-                    DrinkService.modifyDrink(returnDrink(products));
+                    DrinkService.modifyDrink(returnDrink(products), products);
                     break;
                 case 0:
                     return;

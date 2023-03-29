@@ -38,8 +38,7 @@ public class PizzeriaService {
         }
         return null;
     }
-    // TODO: Verify that usernames are unique
-    public static void main(String[] args) {
+    public static void openShop() {
         while(true)
         {
             greetScreen();
@@ -57,12 +56,16 @@ public class PizzeriaService {
                     }
                     break;
                 case 2:
-                    pizzeria.addPeople(PersonService.newPerson());
+                    pizzeria.addPeople(PersonService.newPerson(pizzeria.getPeople()));
                     System.out.println("User added successfully!");
                     break;
                 case 0:
                     System.out.println("Thank you for visiting our shop!");
                     return;
+                default:
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid value! Please try again!");
+                    System.out.print("\u001B[0m");
             }
         }
 

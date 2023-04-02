@@ -1,4 +1,4 @@
-package model;
+package model.person;
 
 public class Person {
     protected StringBuilder firstName;

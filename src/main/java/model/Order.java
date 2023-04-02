@@ -1,5 +1,10 @@
 package model;
 
+import model.person.Customer;
+import model.product.Drink;
+import model.product.Pizza;
+import model.product.Product;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +20,21 @@ public class Order {
     private Date orderTime;
     private Date expectedTime;
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public Date getExpectedTime() {
+        return expectedTime;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 
     public List<Product> getProducts() {
         return products;

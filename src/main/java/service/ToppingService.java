@@ -1,8 +1,9 @@
 package service;
 
-import model.Topping;
-import model.Topping.Measure;
+import model.product.Topping;
+import model.product.Topping.Measure;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,29 +35,38 @@ public class ToppingService {
             listToppings(toppings);
             System.out.println("Choose a topping to edit from the list below: ");
             System.out.print( String.format("Option (1-%d): ", toppings.size()));
-            option = scanner.nextInt();
 
-            if (option < 1 || option > toppings.size()) {
+            try {
+                option = scanner.nextInt();
+
+                if (option < 1 || option > toppings.size()) {
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + toppings.size() + ".");
+                    System.out.print("\u001B[0m");
+                } else {
+                    Topping topping = toppings.get(option-1);
+
+                    System.out.print("Select a quantity ");
+
+                    if(Measure.pc == topping.getUnitOfMeasure()) {
+                        System.out.print("(pieces): ");
+                        int newQuantity = scanner.nextInt();
+                        topping.setIntQuantity(newQuantity);
+                    }
+                    else {
+                        System.out.print("(grams): ");
+                        double newQuantity = scanner.nextDouble();
+                        topping.setDoubleQuantity(newQuantity);
+                    }
+                    System.out.println("Quantity of " + topping.getName() + " modified!");
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
                 System.out.print("\u001B[31m");
-                System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + toppings.size() + ".");
+                System.out.println("Invalid input! Please enter a valid integer.");
                 System.out.print("\u001B[0m");
-            } else {
-                Topping topping = toppings.get(option-1);
-
-                System.out.print("Select a quantity ");
-
-                if(Measure.pc == topping.getUnitOfMeasure()) {
-                    System.out.print("(pieces): ");
-                    int newQuantity = scanner.nextInt();
-                    topping.setIntQuantity(newQuantity);
-                }
-                else {
-                    System.out.print("(grams): ");
-                    double newQuantity = scanner.nextDouble();
-                    topping.setDoubleQuantity(newQuantity);
-                }
-                System.out.println("Quantity of " + topping.getName() + " modified!");
-                break;
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
 
 

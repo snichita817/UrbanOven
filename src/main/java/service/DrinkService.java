@@ -1,14 +1,10 @@
 package service;
 
-import model.Drink;
-import model.Product;
-import model.ProductComparator;
-import model.Topping;
+import model.product.Drink;
+import model.product.Product;
+import model.product.ProductComparator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DrinkService {
     private final static Scanner scanner = new Scanner(System.in);
@@ -22,16 +18,25 @@ public class DrinkService {
             System.out.println("\t2 -> 350 mL");
             System.out.println("\t3 -> 500 mL");
             System.out.print("Select drink size: ");
-            sizeOption = scanner.nextInt();
 
-            if (sizeOption != 1 && sizeOption != 2 && sizeOption != 3 ) {
+            try {
+                sizeOption = scanner.nextInt();
+
+                if (sizeOption != 1 && sizeOption != 2 && sizeOption != 3 ) {
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid option: " + sizeOption + ". Please choose a valid number (1-3).");
+                    System.out.print("\u001B[0m");
+                } else {
+                    drink.setSize(sizeOption);
+                    System.out.println("Size selected successfully!");
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
                 System.out.print("\u001B[31m");
-                System.out.println("Invalid option: " + sizeOption + ". Please choose a valid number (1-3).");
+                System.out.println("Invalid input! Please enter a valid integer.");
                 System.out.print("\u001B[0m");
-            } else {
-                drink.setSize(sizeOption);
-                System.out.println("Size selected successfully!");
-                break;
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
 
@@ -46,74 +51,28 @@ public class DrinkService {
             listDrinks(drinks);
             System.out.println("Choose a drink from the list below:");
             System.out.print( String.format("Option (1-%d): ", drinks.size()));
-            option = scanner.nextInt();
-            if (option < 1 || option > drinks.size()) {
+            try {
+                option = scanner.nextInt();
+                if (option < 1 || option > drinks.size()) {
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + drinks.size() + ".");
+                    System.out.print("\u001B[0m");
+                } else {
+                    drink = drinks.get(option-1);
+                    modifyDrinkSize((Drink)drink);
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
                 System.out.print("\u001B[31m");
-                System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + drinks.size() + ".");
+                System.out.println("Invalid input! Please enter a valid integer.");
                 System.out.print("\u001B[0m");
-            } else {
-                drink = drinks.get(option-1);
-                modifyDrinkSize((Drink)drink);
-                break;
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
         System.out.println(drink);
         return (Drink)drink;
     }
-
-    /*public static void printModifyMenu() {
-        System.out.println("1. Add topping;");
-        System.out.println("2. Remove topping;");
-        System.out.println("3. Modify topping quantity;");
-        System.out.println("4. Modify drink size;");
-        System.out.println("5. Delete drink;");
-        System.out.println("0. Back");
-    }
-
-    public static void modifyDrink(Drink drink, List<Product> products) {
-        System.out.println("==========   DRINK PERSONALIZER   ==========");
-        int option;
-
-        while (true)
-        {
-            System.out.println("Your drink: ");
-            System.out.println(drink);
-            System.out.println("Select an option (1-5): ");
-            printModifyMenu();
-            option = scanner.nextInt();
-            switch (option) {
-                case 1: {
-                    drink.addTopping(ToppingService.getTopping(ToppingService.getDrinkToppings()));
-                    break;
-                }
-                case 2: {
-                    drink.removeTopping(ToppingService.removeTopping(drink.getToppings()));
-                    break;
-                }
-                case 3: {
-                    ToppingService.modifyToppingQuantity(drink.getToppings());
-                    drink.recalculatePrice();
-                    break;
-                }
-                case 4: {
-                    modifyDrinkSize(drink);
-                    break;
-                }
-                case 5: {
-                    ProductService.deleteProduct(drink, products);
-                }
-                case 0: {
-                    return;
-                }
-                default: {
-                    System.out.print("\u001B[31m");
-                    System.out.println("Invalid option: " + option + ".");
-                    System.out.print("\u001B[0m");
-                }
-            }
-        }
-
-    }*/
 
     public static Drink getLemonade() {
         Product lemonade = new Drink.Builder()
@@ -193,18 +152,27 @@ public class DrinkService {
             System.out.println("2 -> Price (low - high)");
             System.out.println("3 -> Price (high - low)");
             System.out.print("Option: ");
-            int option = scanner.nextInt();
 
-            switch (option) {
-                case 1:
-                    break;
-                case 2:
-                    Collections.sort(drinks, new ProductComparator(true));
-                    break;
-                case 3:
-                    Collections.sort(drinks, new ProductComparator(false));
-                    break;
 
+            try {
+                int option = scanner.nextInt();
+                switch (option) {
+                    case 1:
+                        break;
+                    case 2:
+                        Collections.sort(drinks, new ProductComparator(true));
+                        break;
+                    case 3:
+                        Collections.sort(drinks, new ProductComparator(false));
+                        break;
+
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.print("\u001B[31m");
+                System.out.println("Invalid input! Please enter a valid integer.");
+                System.out.print("\u001B[0m");
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
 

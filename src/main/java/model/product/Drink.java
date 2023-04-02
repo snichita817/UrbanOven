@@ -1,4 +1,4 @@
-package model;
+package model.product;
 
 import java.util.List;
 

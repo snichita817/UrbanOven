@@ -1,14 +1,10 @@
 package service;
 
-import model.Pizza;
-import model.Product;
-import model.ProductComparator;
-import model.Topping;
+import model.product.Pizza;
+import model.product.Product;
+import model.product.ProductComparator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PizzaService {
     private final static Scanner scanner = new Scanner(System.in);
@@ -18,16 +14,25 @@ public class PizzaService {
         {
             int sizeOption;
             System.out.print("Select pizza size (6, 8, 10 slices): ");
-            sizeOption = scanner.nextInt();
 
-            if (sizeOption != 6 && sizeOption != 8 && sizeOption != 10 ) {
+            try {
+                sizeOption = scanner.nextInt();
+
+                if (sizeOption != 6 && sizeOption != 8 && sizeOption != 10 ) {
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid option: " + sizeOption + ". Please choose a valid number (6 or 8 or 10).");
+                    System.out.print("\u001B[0m");
+                } else {
+                    pizza.setSize(sizeOption);
+                    System.out.println("Size selected successfully!");
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
                 System.out.print("\u001B[31m");
-                System.out.println("Invalid option: " + sizeOption + ". Please choose a valid number (6 or 8 or 10).");
+                System.out.println("Invalid input! Please enter a valid integer.");
                 System.out.print("\u001B[0m");
-            } else {
-                pizza.setSize(sizeOption);
-                System.out.println("Size selected successfully!");
-                break;
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
 
@@ -42,74 +47,29 @@ public class PizzaService {
             listPizzas(pizzas);
             System.out.println("Choose a pizza from the list below:");
             System.out.print( String.format("Option (1-%d): ", pizzas.size()));
-            option = scanner.nextInt();
-            if (option < 1 || option > pizzas.size()) {
+
+            try {
+                option = scanner.nextInt();
+                if (option < 1 || option > pizzas.size()) {
+                    System.out.print("\u001B[31m");
+                    System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + pizzas.size() + ".");
+                    System.out.print("\u001B[0m");
+                } else {
+                    pizza = pizzas.get(option-1);
+                    modifyPizzaSize((Pizza)pizza);
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
                 System.out.print("\u001B[31m");
-                System.out.println("Invalid option: " + option + ". Please choose a number between 1 and " + pizzas.size() + ".");
+                System.out.println("Invalid input! Please enter a valid integer.");
                 System.out.print("\u001B[0m");
-            } else {
-                pizza = pizzas.get(option-1);
-                modifyPizzaSize((Pizza)pizza);
-                break;
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
         System.out.println(pizza);
         return (Pizza)pizza;
     }
-
-/*    public static void printModifyMenu() {
-        System.out.println("1. Add topping;");
-        System.out.println("2. Remove topping;");
-        System.out.println("3. Modify topping quantity;");
-        System.out.println("4. Modify pizza size;");
-        System.out.println("5. Delete this pizza;");
-        System.out.println("0. Back");
-    }*/
-
-    /*public static void modifyPizza(Pizza pizza, List<Product> products) {
-        System.out.println("==========   PIZZA PERSONALIZER   ==========");
-        int option;
-
-        while (true)
-        {
-            System.out.println("Your pizza: ");
-            System.out.println(pizza);
-            System.out.println("Select an option (1-5): ");
-            printModifyMenu();
-            option = scanner.nextInt();
-            switch (option) {
-                case 1: {
-                    pizza.addTopping(ToppingService.getTopping(ToppingService.getPizzaToppings()));
-                    break;
-                }
-                case 2: {
-                    pizza.removeTopping(ToppingService.removeTopping(pizza.getToppings()));
-                    break;
-                }
-                case 3: {
-                    ToppingService.modifyToppingQuantity(pizza.getToppings());
-                    pizza.recalculatePrice();
-                    break;
-                }
-                case 4: {
-                    modifyPizzaSize(pizza);
-                    break;
-                }
-                case 5: {
-                    ProductService.deleteProduct(pizza, products);
-                }
-                case 0: {
-                    return;
-                }
-                default: {
-                    System.out.print("\u001B[31m");
-                    System.out.println("Invalid option: " + option + ".");
-                    System.out.print("\u001B[0m");
-                }
-            }
-        }
-
-    }*/
 
     public static Pizza getMargherita(){
         Product pizza = new Pizza.Builder()
@@ -188,18 +148,28 @@ public class PizzaService {
             System.out.println("2 -> Price (low - high)");
             System.out.println("3 -> Price (high - low)");
             System.out.print("Option: ");
-            int option = scanner.nextInt();
 
-            switch (option) {
-                case 1:
-                    break;
-                case 2:
-                    Collections.sort(pizzas, new ProductComparator(true));
-                    break;
-                case 3:
-                    Collections.sort(pizzas, new ProductComparator(false));
-                    break;
 
+            try {
+                int option = scanner.nextInt();
+
+                switch (option) {
+                    case 1:
+                        break;
+                    case 2:
+                        Collections.sort(pizzas, new ProductComparator(true));
+                        break;
+                    case 3:
+                        Collections.sort(pizzas, new ProductComparator(false));
+                        break;
+
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.print("\u001B[31m");
+                System.out.println("Invalid input! Please enter a valid integer.");
+                System.out.print("\u001B[0m");
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
 

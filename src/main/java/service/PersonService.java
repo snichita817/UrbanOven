@@ -1,8 +1,9 @@
 package service;
 
 import model.*;
+import model.person.Customer;
+import model.person.Person;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Scanner;
 

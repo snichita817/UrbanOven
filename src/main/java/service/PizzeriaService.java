@@ -1,15 +1,18 @@
 package service;
 
-import model.Person;
-import model.Pizzeria;
-import model.Customer;
-import model.Product;
+import model.*;
+import model.person.Customer;
+import model.person.Employee;
+import model.person.Person;
+import model.product.Product;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class PizzeriaService {
-    private static Pizzeria pizzeria = new Pizzeria();
+    public static Pizzeria pizzeria = new Pizzeria();
     public static Scanner scanner = new Scanner(System.in);
     public static void greetScreen() {
         System.out.println("\t\t\t=================  WELCOME TO URBANOVEN  =================");
@@ -20,6 +23,32 @@ public class PizzeriaService {
         System.out.print("Select an option: ");
     }
 
+
+    public static void seedData() {
+        Employee employee = new Employee.Builder()
+                .buildUserName("admin")
+                .buildPassword("admin")
+                .buildRanking("manager")
+                .build();
+
+        Customer customer = new Customer.Builder()
+                .buildUserName("user")
+                .buildPassword("user")
+                .buildFirstName("default")
+                .buildLastName("user")
+                .build();
+
+        List<Product> products = new ArrayList<>();
+        products.add(PizzaService.getMeatLovers());
+        products.add(DrinkService.getLemonade());
+
+        Order order = new Order.Builder().buildCustomer(customer).buildProducts(products).build();
+        customer.addOrder(order);
+        pizzeria.addPeople(employee);
+        pizzeria.addPeople(customer);
+        pizzeria.addOrder(order);
+    }
+
     public static void listMenu() {
         System.out.println("\t\t==============  URBANOVEN MENU  ==============");
         List<Product> products = pizzeria.getProducts();
@@ -27,7 +56,7 @@ public class PizzeriaService {
     }
 
     public static Person login() {
-        System.out.println("Enter your login details");
+        System.out.println("\n\nEnter your login details");
         System.out.print("Username: ");
         String username = scanner.next();
         scanner.nextLine();
@@ -46,37 +75,49 @@ public class PizzeriaService {
         return null;
     }
     public static void openShop() {
+
+        // populeaza cu un user si cu un admin
+        seedData();
         while(true)
         {
             greetScreen();
-            int option = scanner.nextInt();
-            switch (option) {
-                case 1:
-                    Person currentLogin = login();
-                    if(currentLogin == null)
-                    {
-                        System.out.println("Username or password is incorrect!");
-                        break;
-                        // PART where USER IS LOGGED IN
-                    } else if (currentLogin instanceof Customer) {
+            try {
+                int option = scanner.nextInt();
+                switch (option) {
+                    case 1:
+                        Person currentLogin = login();
+                        if(currentLogin == null)
+                        {
+                            System.out.println("Username or password is incorrect!");
+                            break;
+                            // PART where USER IS LOGGED IN
+                        } else if (currentLogin instanceof Customer) {
                             CustomerService.serviceScreen((Customer)currentLogin);
-                    }
-                    break;
-                case 2:
-                    pizzeria.addPeople(PersonService.newPerson(pizzeria.getPeople()));
-                    System.out.println("User added successfully!");
-                    break;
-                case 0:
-                    System.out.println("Thank you for visiting our shop!");
-                    return;
-                default:
-                    System.out.print("\u001B[31m");
-                    System.out.println("Invalid value! Please try again!");
-                    System.out.print("\u001B[0m");
+                        }
+                        else if (currentLogin instanceof Employee) {
+                            EmployeeService.employeeScreen();
+                        }
+                        break;
+                    case 2:
+                        pizzeria.addPeople(PersonService.newPerson(pizzeria.getPeople()));
+                        System.out.println("User added successfully!");
+                        break;
+                    case 0:
+                        System.out.println("Thank you for visiting our shop!");
+                        return;
+                    default:
+                        System.out.print("\u001B[31m");
+                        System.out.println("Invalid value! Please try again!");
+                        System.out.print("\u001B[0m");
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.print("\u001B[31m");
+                System.out.println("Invalid input! Please enter a valid integer.");
+                System.out.print("\u001B[0m");
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
-
-
     }
 
 }

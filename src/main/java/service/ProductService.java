@@ -1,9 +1,10 @@
 package service;
 
-import model.Drink;
-import model.Pizza;
-import model.Product;
+import model.product.Drink;
+import model.product.Pizza;
+import model.product.Product;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -48,44 +49,53 @@ public class ProductService {
             System.out.println(product);
             printModifyMenu(product.getName());
             System.out.print("Select an option (1-5): ");
-            option = scanner.nextInt();
-            switch (option) {
-                case 1: {
-                    if(product instanceof Drink)
-                        ((Drink)product).addTopping(ToppingService.getTopping(ToppingService.getDrinkToppings()));
-                    else ((Pizza)product).addTopping(ToppingService.getTopping(ToppingService.getPizzaToppings()));
-                    break;
-                }
-                case 2: {
-                    product.removeTopping(ToppingService.removeTopping(product.getToppings()));
-                    break;
-                }
-                case 3: {
-                    ToppingService.modifyToppingQuantity(product.getToppings());
-                    product.recalculatePrice();
-                    break;
-                }
-                case 4: {
-                    if(product instanceof Drink)
-                    {
-                        DrinkService.modifyDrinkSize((Drink)product);
+
+            try {
+                option = scanner.nextInt();
+                switch (option) {
+                    case 1: {
+                        if(product instanceof Drink)
+                            ((Drink)product).addTopping(ToppingService.getTopping(ToppingService.getDrinkToppings()));
+                        else ((Pizza)product).addTopping(ToppingService.getTopping(ToppingService.getPizzaToppings()));
+                        break;
                     }
-                    else {
-                        PizzaService.modifyPizzaSize((Pizza)product);
+                    case 2: {
+                        product.removeTopping(ToppingService.removeTopping(product.getToppings()));
+                        break;
                     }
-                    break;
+                    case 3: {
+                        ToppingService.modifyToppingQuantity(product.getToppings());
+                        product.recalculatePrice();
+                        break;
+                    }
+                    case 4: {
+                        if(product instanceof Drink)
+                        {
+                            DrinkService.modifyDrinkSize((Drink)product);
+                        }
+                        else {
+                            PizzaService.modifyPizzaSize((Pizza)product);
+                        }
+                        break;
+                    }
+                    case 5: {
+                        ProductService.deleteProduct(product, products);
+                    }
+                    case 0: {
+                        return;
+                    }
+                    default: {
+                        System.out.print("\u001B[31m");
+                        System.out.println("Invalid option: " + option + ".");
+                        System.out.print("\u001B[0m");
+                    }
                 }
-                case 5: {
-                    ProductService.deleteProduct(product, products);
-                }
-                case 0: {
-                    return;
-                }
-                default: {
-                    System.out.print("\u001B[31m");
-                    System.out.println("Invalid option: " + option + ".");
-                    System.out.print("\u001B[0m");
-                }
+            }
+            catch (InputMismatchException e) {
+                System.out.print("\u001B[31m");
+                System.out.println("Invalid input! Please enter a valid integer.");
+                System.out.print("\u001B[0m");
+                scanner.next(); // consume the invalid input to avoid an infinite loop
             }
         }
     }

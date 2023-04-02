@@ -1,31 +1,45 @@
-package model;
+package model.person;
 
+import model.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Employee extends Person{
-    private int salary;
-    private StringBuilder ranking;
+public class Customer extends Person {
+    private List<Order> orderHistory = new ArrayList<>();
 
-    private Employee(Builder builder) {
-        this.password = builder.password;
+    public void addOrder(Order order) {
+        this.orderHistory.add(order);
+        System.out.println("Order saved to the order history");
+    }
+
+    public List<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
+    private Customer (Builder builder) {
         this.userName = builder.userName;
+        this.password = builder.password;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.phoneNumber = builder.phoneNumber;
         this.address = builder.address;
-        this.salary = builder.salary;
-        this.ranking = builder.ranking;
+        this.orderHistory = builder.orderHistory;
     }
 
-    public static class Builder{
+    public static class Builder {
         private StringBuilder password;
         private StringBuilder userName;
         private StringBuilder firstName;
         private StringBuilder lastName;
         private StringBuilder address;
         private StringBuilder phoneNumber;
-        public int salary;
-        public StringBuilder ranking;
+        private List<Order> orderHistory = new ArrayList<>();
+
+        public Builder buildFirstName(String firstName) {
+            this.firstName = new StringBuilder(firstName);
+            return this;
+        }
 
         public Builder buildUserName(String userName) {
             this.userName = new StringBuilder(userName);
@@ -34,19 +48,6 @@ public class Employee extends Person{
 
         public Builder buildPassword(String password) {
             this.password = new StringBuilder(password);
-            return this;
-        }
-
-        public Builder buildFirstName(String firstName) {
-            this.firstName = new StringBuilder(firstName);
-            return this;
-        }
-        public Builder buildSalary(int salary) {
-            this.salary = salary;
-            return this;
-        }
-        public Builder buildRanking(String ranking) {
-            this.ranking = new StringBuilder(ranking);
             return this;
         }
 
@@ -62,24 +63,16 @@ public class Employee extends Person{
             this.phoneNumber = new StringBuilder(phoneNumber);
             return this;
         }
-        public Employee build() {
-            return new Employee(this);
+/*        public Builder buildOrderHistory(List<Order> orderHistory) {
+            this.orderHistory = orderHistory;
+            return this;
+        }*/
+
+        public Customer build() {
+            return new Customer(this);
         }
 
     }
-    public int getSalary() {
-        return salary;
-    }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 
-    public StringBuilder getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(StringBuilder ranking) {
-        this.ranking = ranking;
-    }
 }

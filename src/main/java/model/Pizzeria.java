@@ -1,8 +1,9 @@
 package model;
 
+import model.person.Person;
+import model.product.Product;
 import service.DrinkService;
 import service.PizzaService;
-import service.PizzeriaService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,13 @@ public class Pizzeria {
         products.addAll(PizzaService.getPizzas(true));
         products.addAll(DrinkService.getDrinks(true));
         this.allOrders = new ArrayList<>();
+    }
+
+    public void addOrder(Order order) {
+        allOrders.add(order);
+    }
+    public List<Order> getAllOrders() {
+        return allOrders;
     }
 
     public List<Product> getProducts() {

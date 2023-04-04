@@ -42,6 +42,14 @@ public class PersonService {
         System.out.print("Password: ");
         String password = scanner.nextLine();
 
+        while (password.equals("")) {
+            System.out.print("\u001B[31m");
+            System.out.print("Password cannot be null.");
+            System.out.print("\u001B[0m");
+            System.out.print("\nPassword: ");
+            password = scanner.nextLine();
+        }
+
         System.out.print("Address: ");
         String address = scanner.nextLine();
 

@@ -1,6 +1,7 @@
 package model.person;
 
 public class Person {
+    protected int id;
     protected StringBuilder firstName;
     protected StringBuilder userName;
     protected StringBuilder lastName;
@@ -15,6 +16,10 @@ public class Person {
         toReturn = toReturn + "Address: " + this.address + ";\n";
         toReturn = toReturn + "Telephone Number: " + this.phoneNumber + ";\n";
         return toReturn;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public StringBuilder getUserName() {

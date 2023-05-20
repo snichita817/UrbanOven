@@ -9,6 +9,7 @@ public class Pizza extends Product {
         this.toppings = builder.toppings;
         this.price = builder.price;
         this.size = builder.size;
+        this.id = builder.id;
     }
 
     @Override
@@ -30,10 +31,17 @@ public class Pizza extends Product {
     }
 
     public static class Builder {
+        private int id;
         private StringBuilder name;
         private List<Topping> toppings;
         private double price;
         private int size;
+
+        public Builder buildId(int id) {
+            this.id = id;
+            return this;
+        }
+
         public Builder buildName(String name) {
             this.name = new StringBuilder(name);
             return this;
@@ -44,6 +52,11 @@ public class Pizza extends Product {
         }
         public Builder buildSize(int size) {
             this.size = size;
+            return this;
+        }
+
+        public Builder buildPrice(Double price) {
+            this.price = price;
             return this;
         }
 

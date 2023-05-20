@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS `customers` (
      `firstName` VARCHAR(45) NULL,
      `lastName` VARCHAR(45) NULL,
      `phoneNumber` VARCHAR(45) NULL,
-     `orderHistory` BLOB NULL,
      PRIMARY KEY (`customer_id`)
 );
 
@@ -41,8 +40,64 @@ CREATE TABLE IF NOT EXISTS `orders` (
     FOREIGN KEY (`customer_id`) REFERENCES `customers`(`customer_id`)
 );
 
-INSERT into `customers` (`customer_id`, `username`, `password`, `firstName`, `lastName`, `phoneNumber`)
+CREATE TABLE IF NOT EXISTS `pizzas` (
+    `pizza_id` INT AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+    `price` DOUBLE NOT NULL,
+    `size` INT NOT NULL,
+    PRIMARY KEY (`pizza_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `order_pizzas` (
+    `order_id` INT,
+    `pizza_id` INT,
+    `tomato` DOUBLE,
+    `mozzarella` DOUBLE,
+    `mushroom` DOUBLE,
+    `pepperoni` DOUBLE,
+    `onion` DOUBLE,
+    `green pepper` DOUBLE,
+    `black olives` DOUBLE,
+    `ham` DOUBLE,
+    `pineapple` DOUBLE,
+    `bacon` DOUBLE,
+    PRIMARY KEY (`order_id`, `pizza_id`),
+    FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`),
+    FOREIGN KEY (`pizza_id`) REFERENCES `pizzas`(`pizza_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `drinks` (
+    `drink_id` INT AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+    `price` DOUBLE NOT NULL,
+    `size` INT NOT NULL,
+    `withAlcohol` BOOL NOT NULL,
+    PRIMARY KEY (`drink_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `order_drinks` (
+      `order_id` INT,
+      `drink_id` INT,
+      `ice` INT,
+      `lemon` INT,
+      `mint` INT,
+      `ginger` INT,
+      `sugar` DOUBLE,
+      `lime` INT,
+      PRIMARY KEY (`order_id`, `drink_id`),
+      FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`),
+      FOREIGN KEY (`drink_id`) REFERENCES `drinks`(`drink_id`)
+);
+
+INSERT IGNORE into `customers` (`customer_id`, `username`, `password`, `firstName`, `lastName`, `phoneNumber`)
 values (1, 'user', 'user', 'nichita', 'stanescu', '0736535210');
 
-INSERT INTO `employees` (`employee_id`, `username`, `password`, `firstName`, `lastName`, `salary`, `ranking`, `phoneNumber`)
+INSERT IGNORE INTO `employees` (`employee_id`, `username`, `password`, `firstName`, `lastName`, `salary`, `ranking`, `phoneNumber`)
 VALUES (1, 'admin', 'admin', 'pizza', 'king', 1080.99, 'king', '079586986');
+
+
+
+
+
+
+

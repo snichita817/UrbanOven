@@ -5,6 +5,7 @@ import model.person.Customer;
 import model.person.Employee;
 import model.person.Person;
 import model.product.Product;
+import repository.CustomerRepository;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -32,21 +33,22 @@ public class PizzeriaService {
                 .build();
 
         Customer customer = new Customer.Builder()
+                .buildId(1)
                 .buildUserName("user")
                 .buildPassword("user")
                 .buildFirstName("default")
                 .buildLastName("user")
                 .build();
 
-        List<Product> products = new ArrayList<>();
-        products.add(PizzaService.getMeatLovers());
-        products.add(DrinkService.getLemonade());
-
-        Order order = new Order.Builder().buildCustomer(customer).buildProducts(products).build();
-        customer.addOrder(order);
+//        List<Product> products = new ArrayList<>();
+//        products.add(PizzaService.getMeatLovers());
+//        products.add(DrinkService.getLemonade());
+//
+//        Order order = new Order.Builder().buildCustomer(customer).buildProducts(products).build();
+//        customer.addOrder(order);
         pizzeria.addPeople(employee);
         pizzeria.addPeople(customer);
-        pizzeria.addOrder(order);
+//        pizzeria.addOrder(order);
     }
 
     public static void listMenu() {
@@ -85,6 +87,8 @@ public class PizzeriaService {
                 int option = scanner.nextInt();
                 switch (option) {
                     case 1:
+
+                        // The person who is logged in right now
                         Person currentLogin = login();
                         if(currentLogin == null)
                         {

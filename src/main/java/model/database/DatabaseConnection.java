@@ -9,13 +9,13 @@ import java.sql.Statement;
 public class DatabaseConnection {
     private static DatabaseConnection instance = null;
     private String path_to_init = "src\\main\\java\\model\\init.sql";
-    public String url;
+    public static String url;
     private String driver;                              // mysql
     private String port;                                // 3306
     private String database;                            // urbanoven
-    private String username;                            // root
-    private String password;                            // root
-    private Connection connection;
+    private static String username;                            // root
+    private static String password;                            // root
+    private static Connection connection;
     public DatabaseConnection(String driver, String port, String database, String username, String password)
     {
         if(instance != null) {
@@ -35,6 +35,16 @@ public class DatabaseConnection {
 
         System.out.println("A database instance created successfully");
     }
+    public static Connection getConnection() throws SQLException {
+        if(connection == null) {
+            try {
+                connection = DriverManager.getConnection(url, username, password);
+            } catch (SQLException e) {
+                throw new SQLException(e.getMessage());
+            }
+        }
+        return connection;
+    }
 
     private void createConnectionString() {
         this.url = "jdbc:" + this.driver + "://localhost:" + this.port + "/" + this.database;
@@ -42,7 +52,7 @@ public class DatabaseConnection {
 
     public void connect() throws Exception {
         try {
-            this.connection = DriverManager.getConnection(this.url, this.username, this.password);
+            connection = DriverManager.getConnection(this.url, this.username, this.password);
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
@@ -52,7 +62,7 @@ public class DatabaseConnection {
 
     public void disconnect() throws Exception {
         try {
-            this.connection.close();
+            connection.close();
         }
         catch (SQLException e) {
             throw new SQLException(e.getMessage());
@@ -61,9 +71,6 @@ public class DatabaseConnection {
         System.out.println("The connection to the database closed successfully!");
     }
 
-    public Connection getConnection() {
-        return this.connection;
-    }
 
     public void initTables() throws SQLException, IOException {
         Statement statement = this.getConnection().createStatement();

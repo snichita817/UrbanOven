@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Comparable<Product> {
+    protected int id;
     protected StringBuilder name;
     protected List<Topping> toppings = new ArrayList<>();
     protected double price;
@@ -45,6 +46,7 @@ public class Product implements Comparable<Product> {
         // Debug message
         System.out.println("Topping " + newTopping + " added successfully");
     }
+    public int getId() { return id; }
     public StringBuilder getName() {
         return name;
     }

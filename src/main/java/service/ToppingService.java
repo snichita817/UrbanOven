@@ -96,6 +96,7 @@ public class ToppingService {
     // =============== TOPPINGS FOR PIZZA =============== //
     public static Topping getSauce(double quantity) {
         Topping tomatoSauce = new Topping.Builder()
+                .buildId("P1")
                 .buildName("Tomato sauce")
                 .buildPrice(0.05)
                 .buildMeasure(Measure.gr)
@@ -105,6 +106,7 @@ public class ToppingService {
     }
     public static Topping getSauce() {
         Topping tomatoSauce = new Topping.Builder()
+                .buildId("P1")
                 .buildName("Tomato sauce")
                 .buildPrice(0.05)
                 .buildMeasure(Measure.gr)
@@ -114,6 +116,7 @@ public class ToppingService {
     }
     public static Topping getMozzarella(double quantity) {
         Topping mozzarella = new Topping.Builder()
+                .buildId("P2")
                 .buildName("Mozzarella")
                 .buildPrice(0.070)
                 .buildMeasure(Measure.gr)
@@ -123,6 +126,7 @@ public class ToppingService {
     }
     public static Topping getMozzarella() {
         Topping mozzarella = new Topping.Builder()
+                .buildId("P2")
                 .buildName("Mozzarella")
                 .buildPrice(0.070)
                 .buildMeasure(Measure.gr)
@@ -132,6 +136,7 @@ public class ToppingService {
     }
     public static Topping getMushroom(double quantity) {
         Topping mushroom = new Topping.Builder()
+                .buildId("P3")
                 .buildName("Mushroom")
                 .buildPrice(0.090)
                 .buildMeasure(Measure.gr)
@@ -141,6 +146,7 @@ public class ToppingService {
     }
     public static Topping getMushroom() {
         Topping mushroom = new Topping.Builder()
+                .buildId("P3")
                 .buildName("Mushroom")
                 .buildPrice(0.090)
                 .buildMeasure(Measure.gr)
@@ -150,24 +156,27 @@ public class ToppingService {
     }
     public static Topping getPepperoni(int quantity) {
         Topping pepperoni = new Topping.Builder()
+                .buildId("P4")
                 .buildName("Pepperoni")
                 .buildPrice(0.9)
                 .buildMeasure(Measure.pc)
-                .buildIntQuantity(quantity)
+                .buildDoubleQuantity(quantity)
                 .build();
         return pepperoni;
     }
     public static Topping getPepperoni() {
         Topping pepperoni = new Topping.Builder()
+                .buildId("P4")
                 .buildName("Pepperoni")
                 .buildPrice(0.9)
                 .buildMeasure(Measure.pc)
-                .buildIntQuantity(10)
+                .buildDoubleQuantity(10)
                 .build();
         return pepperoni;
     }
     public static Topping getOnion(double quantity) {
         Topping onion = new Topping.Builder()
+                .buildId("P5")
                 .buildName("Onion")
                 .buildPrice(0.06)
                 .buildMeasure(Measure.gr)
@@ -177,6 +186,7 @@ public class ToppingService {
     }
     public static Topping getOnion() {
         Topping onion = new Topping.Builder()
+                .buildId("P5")
                 .buildName("Onion")
                 .buildPrice(0.06)
                 .buildMeasure(Measure.gr)
@@ -186,6 +196,7 @@ public class ToppingService {
     }
     public static Topping getGreenPepper(double quantity) {
         Topping greenPepper = new Topping.Builder()
+                .buildId("P6")
                 .buildName("Green pepper")
                 .buildPrice(0.036)
                 .buildMeasure(Measure.gr)
@@ -195,6 +206,7 @@ public class ToppingService {
     }
     public static Topping getGreenPepper() {
         Topping greenPepper = new Topping.Builder()
+                .buildId("P6")
                 .buildName("Green pepper")
                 .buildPrice(0.036)
                 .buildMeasure(Measure.gr)
@@ -204,6 +216,7 @@ public class ToppingService {
     }
     public static Topping getOlives(double quantity) {
         Topping blackOlives = new Topping.Builder()
+                .buildId("P7")
                 .buildName("Black olives")
                 .buildPrice(0.045)
                 .buildMeasure(Measure.gr)
@@ -213,6 +226,7 @@ public class ToppingService {
     }
     public static Topping getOlives() {
         Topping blackOlives = new Topping.Builder()
+                .buildId("P7")
                 .buildName("Black olives")
                 .buildPrice(0.045)
                 .buildMeasure(Measure.gr)
@@ -222,6 +236,7 @@ public class ToppingService {
     }
     public static Topping getHam(double quantity) {
         Topping ham = new Topping.Builder()
+                .buildId("P8")
                 .buildName("Ham")
                 .buildPrice(0.095)
                 .buildMeasure(Measure.gr)
@@ -231,6 +246,7 @@ public class ToppingService {
     }
     public static Topping getHam() {
         Topping ham = new Topping.Builder()
+                .buildId("P8")
                 .buildName("Ham")
                 .buildPrice(0.095)
                 .buildMeasure(Measure.gr)
@@ -240,24 +256,27 @@ public class ToppingService {
     }
     public static Topping getPineapple(int quantity) {
         Topping pineapple = new Topping.Builder()
+                .buildId("P9")
                 .buildName("Pineapple")
                 .buildPrice(0.45)
                 .buildMeasure(Measure.pc)
-                .buildIntQuantity(quantity)
+                .buildDoubleQuantity(quantity)
                 .build();
         return pineapple;
     }
     public static Topping getPineapple() {
         Topping pineapple = new Topping.Builder()
+                .buildId("P9")
                 .buildName("Pineapple")
                 .buildPrice(0.45)
                 .buildMeasure(Measure.pc)
-                .buildIntQuantity(10)
+                .buildDoubleQuantity(10.0)
                 .build();
         return pineapple;
     }
     public static Topping getBacon(double quantity) {
         Topping bacon = new Topping.Builder()
+                .buildId("P10")
                 .buildName("Bacon")
                 .buildPrice(0.095)
                 .buildMeasure(Measure.gr)
@@ -267,6 +286,7 @@ public class ToppingService {
     }
     public static Topping getBacon() {
         Topping bacon = new Topping.Builder()
+                .buildId("P10")
                 .buildName("Bacon")
                 .buildPrice(0.095)
                 .buildMeasure(Measure.gr)
@@ -295,6 +315,7 @@ public class ToppingService {
     // =============== TOPPINGS FOR DRINKS =============== //
     public static Topping getIce() {
         Topping ice = new Topping.Builder()
+                .buildId("D1")
                 .buildName("Ice")
                 .buildMeasure(Measure.pc)
                 .buildPrice(0.5)
@@ -305,6 +326,7 @@ public class ToppingService {
 
     public static Topping getLemon() {
         Topping lemon = new Topping.Builder()
+                .buildId("D2")
                 .buildName("Lemon")
                 .buildMeasure(Measure.pc)
                 .buildPrice(0.7)
@@ -315,6 +337,7 @@ public class ToppingService {
 
     public static Topping getMint() {
         Topping mint = new Topping.Builder()
+                .buildId("D3")
                 .buildName("Mint")
                 .buildMeasure(Measure.pc)
                 .buildPrice(0.8)
@@ -325,6 +348,7 @@ public class ToppingService {
 
     public static Topping getGinger() {
         Topping ginger = new Topping.Builder()
+                .buildId("D4")
                 .buildName("Ginger")
                 .buildMeasure(Measure.gr)
                 .buildPrice(0.8)
@@ -335,20 +359,22 @@ public class ToppingService {
 
     public static Topping getSugar() {
         Topping sugar = new Topping.Builder()
+                .buildId("D5")
                 .buildName("Sugar")
                 .buildMeasure(Measure.gr)
-                .buildPrice(0.4)
-                .buildDoubleQuantity(23.40)
+                .buildPrice(2)
+                .buildIntQuantity(3)
                 .build();
         return sugar;
     }
 
     public static Topping getLime() {
         Topping lime = new Topping.Builder()
+                .buildId("D6")
                 .buildName("Lime")
                 .buildMeasure(Measure.pc)
                 .buildPrice(0.8)
-                .buildDoubleQuantity(6)
+                .buildIntQuantity(6)
                 .build();
         return lime;
     }
@@ -363,8 +389,6 @@ public class ToppingService {
     }
 
     public static void listToppings(List<Topping> toppings) {
-/*        List<Topping> toppings = new ArrayList<>();
-        toppings = getToppings();*/
         for(int i = 0; i<toppings.size(); i++) {
             System.out.println(String.format( "%d. %s", (i+1), toppings.get(i).getName()));
         }

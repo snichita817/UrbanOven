@@ -6,11 +6,21 @@ public class Topping {
         pc
         // per piece
     }
+    private String id;
     private StringBuilder name;
     private double pricePerUnit;
     private Measure unitOfMeasure;
     private double doubleQuantity;
     private int intQuantity;
+    public double getDoubleQuantity() {
+        return doubleQuantity;
+    }
+
+    public String getId() { return this.id; }
+
+    public int getIntQuantity() {
+        return intQuantity;
+    }
 
     public Measure getUnitOfMeasure() {
         return unitOfMeasure;
@@ -25,6 +35,7 @@ public class Topping {
     }
 
     private Topping(Builder builder) {
+        this.id = builder.id;
         this.name = builder.name;
         this.pricePerUnit = builder.pricePerUnit;
         this.unitOfMeasure = builder.unitOfMeasure;
@@ -61,12 +72,16 @@ public class Topping {
     }
 
     public static class Builder {
+        private String id;
         private StringBuilder name;
         private double pricePerUnit;
         private Measure unitOfMeasure;
         private double doubleQuantity;
         private int intQuantity;
-
+        public Builder buildId(String id) {
+            this.id = id;
+            return this;
+        }
         public Builder buildName(String name) {
             this.name = new StringBuilder(name);
             return this;

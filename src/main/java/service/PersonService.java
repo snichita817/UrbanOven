@@ -3,6 +3,7 @@ package service;
 import model.*;
 import model.person.Customer;
 import model.person.Person;
+import repository.CustomerRepository;
 
 import java.util.List;
 import java.util.Scanner;
@@ -64,7 +65,7 @@ public class PersonService {
                 .buildAddress(address)
                 .buildPhoneNumber(phoneNumber)
                 .build();
-
+        CustomerRepository.addCustomer(customer);
         return customer;
     }
 

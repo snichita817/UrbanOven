@@ -18,6 +18,7 @@ public class Customer extends Person {
     }
 
     private Customer (Builder builder) {
+        this.id = builder.id;
         this.userName = builder.userName;
         this.password = builder.password;
         this.firstName = builder.firstName;
@@ -28,6 +29,7 @@ public class Customer extends Person {
     }
 
     public static class Builder {
+        private int id;
         private StringBuilder password;
         private StringBuilder userName;
         private StringBuilder firstName;
@@ -36,6 +38,10 @@ public class Customer extends Person {
         private StringBuilder phoneNumber;
         private List<Order> orderHistory = new ArrayList<>();
 
+        public Builder buildId(int id) {
+            this.id = id;
+            return this;
+        }
         public Builder buildFirstName(String firstName) {
             this.firstName = new StringBuilder(firstName);
             return this;

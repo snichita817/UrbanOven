@@ -3,6 +3,7 @@ package service;
 import model.product.Pizza;
 import model.product.Product;
 import model.product.ProductComparator;
+import repository.PizzaRepository;
 
 import java.util.*;
 
@@ -73,6 +74,7 @@ public class PizzaService {
 
     public static Pizza getMargherita(){
         Product pizza = new Pizza.Builder()
+                .buildId(1)
                 .buildName("Margherita")
                 .buildTopping( new ArrayList<>(
                     List.of(ToppingService.getSauce(),
@@ -84,6 +86,7 @@ public class PizzaService {
 
     public static Pizza getPepperoni() {
         Product pizza = new Pizza.Builder()
+                .buildId(2)
                 .buildName("Pepperoni")
                 .buildTopping(new ArrayList<>(
                     List.of(ToppingService.getSauce(),
@@ -96,6 +99,7 @@ public class PizzaService {
 
     public static Pizza getVegetarian(){
         Product pizza = new Pizza.Builder()
+                .buildId(3)
                 .buildName("Vegetarian")
                 .buildTopping(new ArrayList<>(
                     List.of(ToppingService.getSauce(),
@@ -109,6 +113,7 @@ public class PizzaService {
     }
     public static Pizza getHawaiian() {
         Product pizza = new Pizza.Builder()
+                .buildId(4)
                 .buildName("Hawaiian")
                 .buildTopping(new ArrayList<>(
                         List.of(ToppingService.getSauce(),
@@ -121,6 +126,7 @@ public class PizzaService {
     }
     public static Pizza getMeatLovers() {
         Product pizza = new Pizza.Builder()
+                .buildId(5)
                 .buildName("Meat Lovers")
                 .buildTopping(new ArrayList<>(
                         List.of(ToppingService.getSauce(),
@@ -132,14 +138,22 @@ public class PizzaService {
                 .build();
         return (Pizza)pizza;
     }
+
     public static List<Pizza> getPizzas(boolean isStart) {
+        if(isStart) {
+            PizzaRepository.addPizza(getMargherita());
+            PizzaRepository.addPizza(getPepperoni());
+            PizzaRepository.addPizza(getVegetarian());
+            PizzaRepository.addPizza(getHawaiian());
+            PizzaRepository.addPizza(getMeatLovers());
+        }
+//        List<Pizza> pizzas = PizzaRepository.getAllPizzas();
         List<Pizza> pizzas = new ArrayList<>();
         pizzas.add(getMargherita());
         pizzas.add(getPepperoni());
         pizzas.add(getVegetarian());
         pizzas.add(getHawaiian());
         pizzas.add(getMeatLovers());
-
         // will only print out this if it's not instantiating the pizzeria class
         if(!isStart)
         {

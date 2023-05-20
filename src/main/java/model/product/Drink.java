@@ -25,7 +25,12 @@ public class Drink extends Product{
         return toReturn;
     }
 
+    public boolean isWithAlcohol() {
+        return withAlcohol;
+    }
+
     private Drink(Builder builder) {
+        this.id= builder.id;
         this.name = builder.name;
         this.toppings = builder.toppings;
         this.price = builder.price;
@@ -33,6 +38,7 @@ public class Drink extends Product{
         this.withAlcohol = builder.withAlcohol;
     }
     public static class Builder {
+        private int id;
         private StringBuilder name;
         private List<Topping> toppings;
         private double price;
@@ -41,6 +47,10 @@ public class Drink extends Product{
 
         public Builder buildWithAlcohol(boolean withAlcohol) {
             this.withAlcohol = withAlcohol;
+            return this;
+        }
+        public Builder buildId(int id) {
+            this.id = id;
             return this;
         }
         public Builder buildName(String name) {
@@ -56,12 +66,12 @@ public class Drink extends Product{
             return this;
         }
 
-        public Builder buildPrice(int price) {
+        public Builder buildPrice(Double price) {
             this.price = price;
             return this;
         }
 
-        private Builder buildPrice() {
+        public Builder buildPrice() {
             int priceForAlcohol = this.withAlcohol ? 5 : 0;
             this.price = 5 + this.size/10 + priceForAlcohol;
             if(toppings!= null) {

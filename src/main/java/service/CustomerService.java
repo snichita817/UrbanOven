@@ -2,6 +2,7 @@ package service;
 import model.person.Customer;
 import model.Order;
 import model.product.Product;
+import repository.OrderRepository;
 import service.PizzeriaService;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class CustomerService {
 
     public static void newOrder(Customer customer) {
         List<Product> productList = new ArrayList<>();
+
         OrderService.orderScreen(productList);
         System.out.println(productList);
 
@@ -34,8 +36,10 @@ public class CustomerService {
                 .build();
 
         // adding the order to the customer orders list
+        // and to the database
         if(newOrder.getProducts().size() != 0)
         {
+            OrderRepository.addOrder(newOrder);
             PizzeriaService.pizzeria.addOrder(newOrder);
             customer.addOrder(newOrder);
             System.out.println("Your order was added successfully!");

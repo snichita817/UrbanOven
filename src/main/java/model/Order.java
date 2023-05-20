@@ -19,6 +19,13 @@ public class Order {
     private StringBuilder orderStatus;
     private Date orderTime;
     private Date expectedTime;
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public StringBuilder getOrderStatus() {
+        return orderStatus;
+    }
 
     public int getOrderId() {
         return orderId;

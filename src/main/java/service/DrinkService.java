@@ -3,6 +3,7 @@ package service;
 import model.product.Drink;
 import model.product.Product;
 import model.product.ProductComparator;
+import repository.DrinkRepository;
 
 import java.util.*;
 
@@ -76,6 +77,7 @@ public class DrinkService {
 
     public static Drink getLemonade() {
         Product lemonade = new Drink.Builder()
+                .buildId(1)
                 .buildName("Lemonade with mint")
                 .buildWithAlcohol(false)
                 .buildTopping(
@@ -93,6 +95,7 @@ public class DrinkService {
 
     public static Drink getFanta() {
         Product fanta = new Drink.Builder()
+                .buildId(2)
                 .buildName("Fanta with lemon")
                 .buildWithAlcohol(false)
                 .buildTopping(
@@ -107,6 +110,7 @@ public class DrinkService {
 
     public static Drink getGinAndTonic() {
         Product ginAndTonic = new Drink.Builder()
+                .buildId(3)
                 .buildName("Gin and Tonic")
                 .buildWithAlcohol(true)
                 .buildTopping(
@@ -121,6 +125,7 @@ public class DrinkService {
 
     public static Drink getMojito() {
         Product mojito = new Drink.Builder()
+                .buildId(4)
                 .buildName("Mojito")
                 .buildWithAlcohol(true)
                 .buildTopping(
@@ -138,6 +143,15 @@ public class DrinkService {
     }
 
     public static List<Drink> getDrinks(boolean isStart) {
+
+        if(isStart) {
+            DrinkRepository.addDrink(getLemonade());
+            DrinkRepository.addDrink(getFanta());
+            DrinkRepository.addDrink(getGinAndTonic());
+            DrinkRepository.addDrink(getMojito());
+        }
+
+       // List<Drink> drinks = DrinkRepository.getAllDrinks();
         List<Drink> drinks = new ArrayList<>();
         drinks.add(getLemonade());
         drinks.add(getFanta());

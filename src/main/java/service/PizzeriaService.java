@@ -7,10 +7,7 @@ import model.person.Person;
 import model.product.Product;
 import repository.CustomerRepository;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PizzeriaService {
     public static Pizzeria pizzeria = new Pizzeria();
@@ -22,33 +19,6 @@ public class PizzeriaService {
         System.out.println("\t\t\t0. Exit");
         System.out.println("\t\t\t==========================================================");
         System.out.print("Select an option: ");
-    }
-
-
-    public static void seedData() {
-        Employee employee = new Employee.Builder()
-                .buildUserName("admin")
-                .buildPassword("admin")
-                .buildRanking("manager")
-                .build();
-
-        Customer customer = new Customer.Builder()
-                .buildId(1)
-                .buildUserName("user")
-                .buildPassword("user")
-                .buildFirstName("default")
-                .buildLastName("user")
-                .build();
-
-//        List<Product> products = new ArrayList<>();
-//        products.add(PizzaService.getMeatLovers());
-//        products.add(DrinkService.getLemonade());
-//
-//        Order order = new Order.Builder().buildCustomer(customer).buildProducts(products).build();
-//        customer.addOrder(order);
-        pizzeria.addPeople(employee);
-        pizzeria.addPeople(customer);
-//        pizzeria.addOrder(order);
     }
 
     public static void listMenu() {
@@ -65,21 +35,18 @@ public class PizzeriaService {
         System.out.print("Password: ");
         String password = scanner.nextLine();
 
-        List<Person> listOfPeople = pizzeria.getPeople();
+        Optional<Customer> loggedIn =
+                CustomerRepository.getCustomerByNameAndPassword(username, password);
+//        if(loggedIn.isEmpty()) {
+//            // try to retrieve the value from Employees table
+//            loggedIn = EmployeeRepository.getCustomerByNameAndPassword(username, password);
+//        }
+        // If present returns the value, if not null
+        return loggedIn.orElse(null);
 
-        for(Person person : listOfPeople) {
-            if( person.getUserName().compareTo(new StringBuilder(username)) == 0 && person.getPassword().compareTo(new StringBuilder(password)) == 0)
-            {
-                return person;
-            }
-
-        }
-        return null;
     }
     public static void openShop() {
-
-        // populeaza cu un user si cu un admin
-        seedData();
+        ToppingService.addToppingsToDB();
         while(true)
         {
             greetScreen();
@@ -87,14 +54,13 @@ public class PizzeriaService {
                 int option = scanner.nextInt();
                 switch (option) {
                     case 1:
-
                         // The person who is logged in right now
                         Person currentLogin = login();
                         if(currentLogin == null)
                         {
                             System.out.println("Username or password is incorrect!");
                             break;
-                            // PART where USER IS LOGGED IN
+                          // PART where USER IS LOGGED IN
                         } else if (currentLogin instanceof Customer) {
                             CustomerService.serviceScreen((Customer)currentLogin);
                         }
@@ -103,7 +69,8 @@ public class PizzeriaService {
                         }
                         break;
                     case 2:
-                        pizzeria.addPeople(PersonService.newPerson(pizzeria.getPeople()));
+                        // Adding new user to the database
+                        PersonService.newPerson();
                         System.out.println("User added successfully!");
                         break;
                     case 0:

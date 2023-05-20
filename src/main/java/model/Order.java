@@ -83,12 +83,25 @@ public class Order {
     public static class Builder {
         private Customer customer;
         private List<Product> products;
-        private double totalCost;
+        private double totalCost = 0.0;
         private StringBuilder orderStatus = new StringBuilder("Pending");
         private Date orderTime = new Date();
         private Date expectedTime;
 
+        public Builder buildOrderStatus(String orderStatus)
+        {
+            this.orderStatus = new StringBuilder(orderStatus);
+            return this;
+        }
+        public Builder buildOrderTime(Date orderTime) {
+            this.orderTime = orderTime;
+            return this;
+        }
 
+        public Builder buildExpectedTime(Date expectedTime) {
+            this.expectedTime = expectedTime;
+            return this;
+        }
 
         public Builder buildCustomer(Customer customer) {
             this.customer = customer;
@@ -105,9 +118,15 @@ public class Order {
             }
             return this;
         }
-
+        public Builder buildTotalCost(double totalCost) {
+            this.totalCost = totalCost;
+            return this;
+        }
         public Order build() {
-            buildTotalCost();
+            if(this.totalCost == 0.0) {
+                buildTotalCost();
+            }
+
             if(orderTime == null) {
                 orderTime = new Date();
             }

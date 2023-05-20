@@ -26,14 +26,53 @@ public class CustomerRepository {
         }
     }
 
-    public Optional<Customer> getCustomerById(int id) {
+    public static boolean uniqueUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM customers c WHERE c.username = ?";
+
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, username);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count == 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static Optional<Customer> getCustomerByNameAndPassword(String username, String password) {
+        String sql = "SELECT * FROM customers c WHERE c.username = ? AND c.password = ?";
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int customerId = resultSet.getInt("customer_id");
+
+                    Customer customer = getCustomerById(customerId).orElse(null);
+                    if (customer != null) {
+                        return Optional.of(customer);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+    public static Optional<Customer> getCustomerById(int id) {
         String sql = "SELECT * FROM customers c where c.customer_id = ?";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
 
-            while(result.next()) {
-                // We have at least drinksone record in the row
+            if(result.next()) {
+                // We have at least one record in the row
                 int customerId = result.getInt("customer_id");
                 String username = result.getString("username");
                 String password = result.getString("password");

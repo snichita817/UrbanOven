@@ -33,7 +33,9 @@ public class Topping {
     public void setIntQuantity(int intQuantity) {
         this.intQuantity = intQuantity;
     }
-
+    public double getPricePerUnit() {
+        return this.pricePerUnit;
+    }
     private Topping(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;

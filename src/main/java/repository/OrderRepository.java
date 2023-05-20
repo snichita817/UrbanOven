@@ -2,15 +2,17 @@ package repository;
 
 import model.Order;
 import model.database.DatabaseConnection;
+import model.person.Customer;
 import model.product.Drink;
 import model.product.Pizza;
 import model.product.Product;
 import model.product.Topping;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
+import java.util.Optional;
 public class OrderRepository {
     public static void addOrder(Order order) {
         String sql = "INSERT INTO orders VALUES (NULL, ?, ?, ?, ?, ?)";
@@ -26,12 +28,12 @@ public class OrderRepository {
             java.util.Date expectedTime = order.getExpectedTime();
 
             // Convert to java.sql.Date
-            java.sql.Date orderSqlDate = new java.sql.Date(orderTime.getTime());
-            java.sql.Date expectedSqlDate = new java.sql.Date(expectedTime.getTime());
+            java.sql.Timestamp orderSqlDate = new java.sql.Timestamp(orderTime.getTime());
+            java.sql.Timestamp expectedSqlDate = new java.sql.Timestamp(expectedTime.getTime());
 
             // Set the converted dates in the prepared statement
-            statement.setDate(4, orderSqlDate);
-            statement.setDate(5, expectedSqlDate);
+            statement.setTimestamp(4, orderSqlDate);
+            statement.setTimestamp(5, expectedSqlDate);
             statement.executeUpdate();
 
             List<Product> orderProducts = order.getProducts();
@@ -44,7 +46,7 @@ public class OrderRepository {
                     for(Product product : orderProducts) {
                         if (product instanceof Pizza) {
                             List<Topping> pizzaToppings = product.getToppings();
-                            String sqlPizza = "INSERT INTO order_pizzas VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            String sqlPizza = "INSERT INTO order_pizzas VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             try (PreparedStatement statement1 = DatabaseConnection.getConnection().prepareStatement(sqlPizza)) {
                                 statement1.setInt(1, generatedKeys.getInt(1));
                                 statement1.setInt(2, product.getId());
@@ -70,12 +72,12 @@ public class OrderRepository {
                                     double quantity = toppingsHashtable.get(columnId);
                                     statement1.setDouble(columnId + 2 , quantity);
                                 }
-
+                                statement1.setInt(13, product.getSize());
                                 statement1.executeUpdate();
                             }
                         }
                         else if (product instanceof Drink) {
-                            String sqlDrink = "INSERT INTO order_drinks VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                            String sqlDrink = "INSERT INTO order_drinks VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             List<Topping> drinkToppings = product.getToppings();
                             try (PreparedStatement statement1 = DatabaseConnection.getConnection().prepareStatement(sqlDrink)) {
                                 statement1.setInt(1, generatedKeys.getInt(1));
@@ -102,7 +104,7 @@ public class OrderRepository {
                                     int quantity = toppingsHashtable.get(columnId);
                                     statement1.setInt(columnId + 2 , quantity);
                                 }
-
+                                statement1.setInt(9, product.getSize());
                                 statement1.executeUpdate();
                             }
                         }
@@ -112,5 +114,52 @@ public class OrderRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Optional<List<Order>> getOrders(int customerId) {
+        String sql = "SELECT * FROM orders o WHERE o.customer_id = ?";
+        List<Order> userOrder = new ArrayList<>();
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            try(ResultSet result = statement.executeQuery()) {
+                while(result.next()) {
+                    int orderId = result.getInt("order_id");
+                    Customer customer = CustomerRepository.getCustomerById(result.getInt("customer_id")).orElse(null);
+                    double totalCost = result.getDouble("totalCost");
+                    String orderStatus = result.getString("orderStatus");
+                    java.util.Date orderTime = result.getTimestamp("orderTime");
+                    java.util.Date expectedTime = result.getTimestamp("expectedTime");
+
+                    List<Product> products = new ArrayList<>(); // Create a list of products
+
+                    // Retrieve the pizzas for the order
+                    Optional<List<Pizza>> pizzas = PizzaRepository.getPizzasByOrderId(orderId);
+                    if (pizzas.isPresent()) {
+                        products.addAll(pizzas.get()); // Add all pizzas to the products list
+                    }
+
+                    // Retrieve the drinks for the order
+                    Optional<List<Drink>> drinks = DrinkRepository.getDrinksByOrderId(orderId);
+                    if(drinks.isPresent()) {
+                        products.addAll(drinks.get());
+                    }
+
+                    userOrder.add(new Order.Builder()
+                            .buildCustomer(customer)
+                            .buildProducts(products)
+                            .buildTotalCost(totalCost)
+                            .buildExpectedTime(expectedTime)
+                            .buildOrderTime(orderTime)
+                            .buildOrderStatus(orderStatus)
+                            .build()
+                    );
+                }
+            }
+
+            return Optional.of(userOrder);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 }

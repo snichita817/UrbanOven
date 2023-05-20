@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `addresses` (
 CREATE TABLE IF NOT EXISTS `orders` (
     `order_id` INT AUTO_INCREMENT,
     `customer_id` INT,
-    `totalCost` FLOAT,
+    `totalCost` DOUBLE,
     `orderStatus` VARCHAR(45) NOT NULL,
-    `orderTime` DATE NOT NULL,
-    `expectedTime` DATE NOT NULL,
+    `orderTime` TIMESTAMP NOT NULL,
+    `expectedTime` TIMESTAMP NOT NULL,
     PRIMARY KEY (`order_id`),
     FOREIGN KEY (`customer_id`) REFERENCES `customers`(`customer_id`)
 );
@@ -51,19 +51,26 @@ CREATE TABLE IF NOT EXISTS `pizzas` (
 CREATE TABLE IF NOT EXISTS `order_pizzas` (
     `order_id` INT,
     `pizza_id` INT,
-    `tomato` DOUBLE,
-    `mozzarella` DOUBLE,
-    `mushroom` DOUBLE,
-    `pepperoni` DOUBLE,
-    `onion` DOUBLE,
-    `green pepper` DOUBLE,
-    `black olives` DOUBLE,
-    `ham` DOUBLE,
-    `pineapple` DOUBLE,
-    `bacon` DOUBLE,
-    PRIMARY KEY (`order_id`, `pizza_id`),
+    `P1` DOUBLE,
+    `P2` DOUBLE,
+    `P3` DOUBLE,
+    `P4` DOUBLE,
+    `P5` DOUBLE,
+    `P6` DOUBLE,
+    `P7` DOUBLE,
+    `P8` DOUBLE,
+    `P9` DOUBLE,
+    `P10` DOUBLE,
+    `size` INT,
     FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`),
     FOREIGN KEY (`pizza_id`) REFERENCES `pizzas`(`pizza_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `toppings` (
+    `topping_id` VARCHAR(45),
+    `name` VARCHAR(45),
+    `price` DOUBLE,
+    PRIMARY KEY (`topping_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `drinks` (
@@ -78,13 +85,13 @@ CREATE TABLE IF NOT EXISTS `drinks` (
 CREATE TABLE IF NOT EXISTS `order_drinks` (
       `order_id` INT,
       `drink_id` INT,
-      `ice` INT,
-      `lemon` INT,
-      `mint` INT,
-      `ginger` INT,
-      `sugar` DOUBLE,
-      `lime` INT,
-      PRIMARY KEY (`order_id`, `drink_id`),
+      `D1` INT,
+      `D2` INT,
+      `D3` INT,
+      `D4` INT,
+      `D5` INT,
+      `D6` INT,
+      `size` INT,
       FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`),
       FOREIGN KEY (`drink_id`) REFERENCES `drinks`(`drink_id`)
 );

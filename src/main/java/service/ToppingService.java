@@ -2,6 +2,8 @@ package service;
 
 import model.product.Topping;
 import model.product.Topping.Measure;
+import repository.ToppingRepository;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -311,6 +313,27 @@ public class ToppingService {
         return toppings;
     }
 
+    public static void addToppingsToDB() {
+        // also inserting in the database here
+        ToppingRepository.addTopping(getSauce());
+        ToppingRepository.addTopping(getMozzarella());
+        ToppingRepository.addTopping(getMushroom());
+        ToppingRepository.addTopping(getPepperoni());
+        ToppingRepository.addTopping(getOnion());
+        ToppingRepository.addTopping(getGreenPepper());
+        ToppingRepository.addTopping(getOlives());
+        ToppingRepository.addTopping(getHam());
+        ToppingRepository.addTopping(getPineapple());
+        ToppingRepository.addTopping(getBacon());
+
+        // Adding drink toppings to the DB
+        ToppingRepository.addTopping(getIce());
+        ToppingRepository.addTopping(getLemon());
+        ToppingRepository.addTopping(getMint());
+        ToppingRepository.addTopping(getGinger());
+        ToppingRepository.addTopping(getSugar());
+        ToppingRepository.addTopping(getLime());
+    }
 
     // =============== TOPPINGS FOR DRINKS =============== //
     public static Topping getIce() {
@@ -384,6 +407,9 @@ public class ToppingService {
         toppings.add(getIce());
         toppings.add(getLemon());
         toppings.add(getMint());
+        toppings.add(getGinger());
+        toppings.add(getSugar());
+        toppings.add(getLime());
 
         return toppings;
     }

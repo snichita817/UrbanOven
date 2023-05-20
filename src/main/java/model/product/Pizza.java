@@ -11,7 +11,6 @@ public class Pizza extends Product {
         this.size = builder.size;
         this.id = builder.id;
     }
-
     @Override
     public String toString() {
         String toReturn = "Pizza ";
@@ -61,7 +60,7 @@ public class Pizza extends Product {
         }
 
         private Builder buildPrice() {
-            this.price = 5;
+            this.price = 5 + (double) this.size /2;
             for(Topping topping : toppings) {
                 this.price = this.price + topping.getPrice();
             }
@@ -69,7 +68,9 @@ public class Pizza extends Product {
         }
 
         public Pizza build() {
-            buildPrice();
+            if(this.toppings != null) {
+                buildPrice();
+            }
             return new Pizza(this);
         }
     }

@@ -59,7 +59,9 @@ public class CustomerService {
                         break;
                     }
                     case 2: {
-                        List<Order> orderList = customer.getOrderHistory();
+                        List<Order> orderList = OrderRepository.getOrders(customer.getId()).orElse(null);
+
+//                        List<Order> orderList = customer.getOrderHistory();
                         if(orderList.size() == 0)
                             System.out.println("You have no orders :(");
                         else {

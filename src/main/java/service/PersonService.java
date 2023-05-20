@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class PersonService {
     public static Scanner scanner = new Scanner(System.in);
 
-    public static Customer newPerson(List<Person> people) {
+    public static Customer newPerson() {
         System.out.println("Enter customer details:");
 
         System.out.print("First Name: ");
@@ -21,23 +21,19 @@ public class PersonService {
         String lastName = scanner.nextLine();
 
         String userName = null;
-        boolean unique = true;
-        while(unique)
+        boolean unique = false;
+        while(!unique)
         {
             System.out.print("Username: ");
             userName = scanner.nextLine();
-            if(people.size() == 0)
-                break;
-            for(Person pers : people) {
-                if( pers.getUserName().compareTo(new StringBuilder(userName)) == 0 )
-                {
+
+            if(!CustomerRepository.uniqueUsername(userName)) {
                     System.out.print("\u001B[31m");
                     System.out.println("User " + userName + " already exists!");
                     System.out.print("\u001B[0m");
-                }
-                else {
-                    unique = false;
-                }
+            }
+            else {
+                break;
             }
         }
         System.out.print("Password: ");

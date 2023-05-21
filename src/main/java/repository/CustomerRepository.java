@@ -11,21 +11,31 @@ import java.util.Optional;
 
 public class CustomerRepository {
     public static void addCustomer(Customer customer) {
+        String sql = "INSERT INTO customers VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        executeCustomerUpdate(sql, customer);
+    }
 
-        String sql = "INSERT INTO customers VALUES (NULL, ?, ?, ?, ?, ?)";
+    public static void editCustomer(Customer customer) {
+        String sql = "UPDATE customers SET username = ?, password = ?, firstName = ?, lastName = ?, address = ?, phoneNumber = ? WHERE customer_id = ?";
+        executeCustomerUpdate(sql, customer);
+    }
 
-        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+    private static void executeCustomerUpdate(String sql, Customer customer) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, customer.getUserName().toString());
             statement.setString(2, customer.getPassword().toString());
             statement.setString(3, customer.getFirstName().toString());
             statement.setString(4, customer.getLastName().toString());
-            statement.setString(5, customer.getPhoneNumber().toString());
+            statement.setString(6, customer.getPhoneNumber().toString());
+            statement.setString(5, customer.getAddress().toString());
+            if (sql.startsWith("UPDATE")) {
+                statement.setInt(7, customer.getId());
+            }
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     public static boolean uniqueUsername(String username) {
         String sql = "SELECT COUNT(*) FROM customers c WHERE c.username = ?";
 
@@ -41,6 +51,16 @@ public class CustomerRepository {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void deleteCustomer(int customerId) {
+        String sql = "DELETE FROM customers WHERE customer_id = ?";
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Optional<Customer> getCustomerByNameAndPassword(String username, String password) {
@@ -79,6 +99,7 @@ public class CustomerRepository {
                 String firstName = result.getString("firstName");
                 String lastName = result.getString("lastName");
                 String phoneNumber = result.getString("phoneNumber");
+                String address = result.getString("address");
                 return Optional.of(new Customer.Builder()
                         .buildId(id)
                         .buildUserName(username)
@@ -86,6 +107,7 @@ public class CustomerRepository {
                         .buildFirstName(firstName)
                         .buildLastName(lastName)
                         .buildPhoneNumber(phoneNumber)
+                        .buildAddress(address)
                         .build());
             }
         } catch (SQLException e) {

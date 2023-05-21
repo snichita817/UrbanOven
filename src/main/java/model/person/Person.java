@@ -18,6 +18,14 @@ public class Person {
         return toReturn;
     }
 
+    public void setUserName(String userName) {
+        this.userName = new StringBuilder(userName);
+    }
+
+    public void setPassword(String password) {
+        this.password = new StringBuilder(password);
+    }
+
     public int getId() {
         return id;
     }

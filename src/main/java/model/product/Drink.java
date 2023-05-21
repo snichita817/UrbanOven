@@ -73,7 +73,7 @@ public class Drink extends Product{
 
         public Builder buildPrice() {
             int priceForAlcohol = this.withAlcohol ? 5 : 0;
-            this.price = 5 + this.size/10 + priceForAlcohol;
+            this.price = 5 + (double) this.size /10 + priceForAlcohol;
             if(toppings!= null) {
                 for(Topping topping : toppings) {
                     this.price = this.price + topping.getPrice();

@@ -17,3 +17,18 @@ To use UrbanOven, follow these steps:
 The application comes with two predefined users for testing purposes:
 * Customer profile with username `user` and password `user`
 * Employee profile with username `admin` and password `admin`
+
+## Database Setup
+UrbanOven utilizes a MySQL database to store and manage data. To set up the database and establish a connection with the application, please follow the instructions below:
+1. Install MySQL and MySQL Workbench if you haven't already. You can download them from the official MySQL website: `https://www.mysql.com/downloads/`
+2. Open MySQL Workbench and connect to your local or remote MySQL server.
+3. Create a new schema (database) for UrbanOven. You can do this by executing the following SQL command: `CREATE DATABASE urbanoven;`
+4. The necessary tables will be created automatically, by the script, in the `init.sql`
+5. Before the first start, you can configure your database connection settings located in the main file:
+    * **Driver**: Set the name of the app database (default: mysql).
+    * **Port**: Specify the port number on which MySQL is running (default: 3306).
+    * **Database**: Set the name of the UrbanOven database/schema. (default: urbanoven).
+    * **Username**: Provide the username with the necessary privileges to access the UrbanOven database.
+    * **Password**: Enter the corresponding password for the specified username.  
+  
+These instructions assume a basic understanding of MySQL and database management. If you encounter any issues during the setup process, refer to the official MySQL documentation or seek assistance from the MySQL community.

@@ -11,7 +11,7 @@ To use UrbanOven, follow these steps:
 6. Once you have registered, you can log in to your account by selecting option 1 from the main menu and entering your username and password.
 7. From the main menu, you can create a new order by selecting option 1 and following the prompts.
 8. You can view your order history by selecting option 2 from the user menu or view the pizzeria menu by typing 3.
-9. If you are an employee, you can view all orders by selecting option 1, find orders by order ID or username by selecting option 2, and filter orders by date by selecting option 3.
+9. If you are an employee, you can view all orders by selecting option 1, find orders by order ID or username by selecting option 2, filter orders by date by selecting option 3, update the order status by selecting option 4, add new employee by selecting option 5, update employee salary by selecting option 6, update employee ranking by selecting option 7, and deleting an employee for the system by selecting option 8.
 
 ## Predefined Users
 The application comes with two predefined users for testing purposes:

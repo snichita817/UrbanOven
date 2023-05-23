@@ -184,6 +184,7 @@ public class OrderService {
                             modifyProduct(products);
                         }
                         else {
+
                             System.out.print("\u001B[31m");
                             System.out.println("You have no products in your order!");
                             System.out.print("\u001B[0m");

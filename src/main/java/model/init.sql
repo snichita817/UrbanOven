@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
     `password` VARCHAR(45) NOT NULL,
     `firstName` VARCHAR(45) NOT NULL,
     `lastName` VARCHAR(45) NOT NULL,
-    `salary` FLOAT NOT NULL,
+    `salary` DOUBLE NOT NULL,
     `ranking` VARCHAR(45) NOT NULL,
      `phoneNumber` VARCHAR(45) NOT NULL,
      PRIMARY KEY (`employee_id`)

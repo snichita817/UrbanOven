@@ -6,6 +6,7 @@ import model.person.Employee;
 import model.person.Person;
 import model.product.Product;
 import repository.CustomerRepository;
+import repository.EmployeeRepository;
 
 import java.util.*;
 
@@ -37,10 +38,13 @@ public class PizzeriaService {
 
         Optional<Customer> loggedIn =
                 CustomerRepository.getCustomerByNameAndPassword(username, password);
-//        if(loggedIn.isEmpty()) {
-//            // try to retrieve the value from Employees table
-//            loggedIn = EmployeeRepository.getCustomerByNameAndPassword(username, password);
-//        }
+        if(loggedIn.isEmpty()) {
+            // try to retrieve the value from Employees table
+            Optional<Employee> employee = EmployeeRepository.getEmployeeByNameAndPassword(username, password);
+            if(employee.isPresent()) {
+                return employee.get();
+            }
+        }
         // If present returns the value, if not null
         return loggedIn.orElse(null);
 
@@ -65,7 +69,7 @@ public class PizzeriaService {
                             CustomerService.serviceScreen((Customer)currentLogin);
                         }
                         else if (currentLogin instanceof Employee) {
-                            EmployeeService.employeeScreen();
+                            EmployeeService.employeeScreen((Employee) currentLogin);
                         }
                         break;
                     case 2:

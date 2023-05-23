@@ -20,5 +20,10 @@ public class Main {
         }
         PizzeriaService.openShop();
 
+        try {
+            database.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

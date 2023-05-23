@@ -144,7 +144,7 @@ public class CustomerService {
                             break;
                         }
                         case 2: {
-                            List<Order> orderList = OrderRepository.getOrders(customer.getId()).orElse(null);
+                            List<Order> orderList = OrderRepository.getOrdersByUserId(customer.getId()).orElse(null);
 
 //                        List<Order> orderList = customer.getOrderHistory();
                             if(orderList.size() == 0)

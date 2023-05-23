@@ -1,5 +1,7 @@
 package model.database;
 
+import service.AuditService;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -56,8 +58,7 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-
-        System.out.println("A connection to the MySQL database established successfully!");
+        AuditService.logAction("connect", "getConnection", "A connection to the MySQL database established successfully!");
     }
 
     public void disconnect() throws Exception {
@@ -67,8 +68,7 @@ public class DatabaseConnection {
         catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-
-        System.out.println("The connection to the database closed successfully!");
+        AuditService.logAction("disconnect", "close()", "The connection to the database closed successfully!");
     }
 
 
@@ -93,8 +93,8 @@ public class DatabaseConnection {
                 statement.execute(sql);         // executing the block of script
             }
 
-            System.out.println("Tables created successfully!");
-            System.out.println("Default values inserted successfully!");
+            AuditService.logAction("initTables", "CREATE", "Tables created successfully!");
+            AuditService.logAction("initTables", "UPDATE", "Default values inserted successfully!");
             statement.close();
         }
         catch (IOException e) {

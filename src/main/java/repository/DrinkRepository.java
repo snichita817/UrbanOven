@@ -4,6 +4,7 @@ import model.database.DatabaseConnection;
 import model.product.Drink;
 import model.product.Pizza;
 import model.product.Topping;
+import service.AuditService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +24,13 @@ public class DrinkRepository {
             statement.setInt(4, drink.getSize());
             statement.setBoolean(5, drink.isWithAlcohol());
             statement.executeUpdate();
+            AuditService.logAction(
+                    "addDrink",
+                    "INSERT",
+                    "Drink inserted successfully: " + drink.getId());
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction("addDrink", "INSERT", "An exception occurred: " + e.getMessage());
         }
     }
 
@@ -64,7 +70,15 @@ public class DrinkRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction(
+                    "getToppingsForDrinkId",
+                    "SQLException",
+                    "An exception occurred: " + e.getMessage());
         }
+        AuditService.logAction(
+                "getToppingsForDrinkId",
+                "SELECT",
+                "Toppings retrieved successfully for drinkId " + drinkId + " and orderId " +orderId);
         return drinkToppings;
     }
 
@@ -81,6 +95,10 @@ public class DrinkRepository {
                 int size = getDrinkSize(drinkId, order_id);
                 List<Topping> toppings = getToppingsForDrinkId(drinkId, order_id);
                 boolean withAlcohol = result.getBoolean("withAlcohol");
+                AuditService.logAction(
+                        "getDrinkById",
+                        "SELECT",
+                        "Drink retrieved successfully: " + drink_id + " from order " + order_id);
                 return Optional.of(new Drink.Builder()
                         .buildId(drinkId)
                         .buildName(name)
@@ -92,6 +110,10 @@ public class DrinkRepository {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction(
+                    "getDrinkById",
+                    "SQLException",
+                    "An exception occurred: " + e.getMessage());
         }
         return Optional.empty();
     }
@@ -104,10 +126,18 @@ public class DrinkRepository {
             ResultSet result = statement.executeQuery();
 
             if(result.next()) {
+                AuditService.logAction(
+                        "getDrinkSize",
+                        "SELECT",
+                        "Got drink size for drinkId " + drink_id + " in orderId " + order_id);
                 return result.getInt("size");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction(
+                    "getDrinkSize",
+                    "SQLException",
+                    "An exception occurred: " + e.getMessage());
         }
         return 0;
     }
@@ -128,41 +158,24 @@ public class DrinkRepository {
                     drinks.add(d);
                 }
             }
+            AuditService.logAction(
+                    "getDrinksByOrderId",
+                    "SELECT",
+                    "Got drinks from orderId " + orderId);
             return Optional.of(drinks);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction(
+                    "getDrinksByOrderId",
+                    "SQLException",
+                    "An exception occurred: " + e.getMessage());
         }
+        AuditService.logAction(
+                "getDrinksByOrderId",
+                "SELECT",
+                "Drinks or order with orderId " + orderId + "not found");
         return Optional.empty();
     }
 
-    public static List<Drink> getAllDrinks() {
-        List<Drink> drinks = new ArrayList<>();
-
-        String sql = "SELECT * FROM drinks";
-        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            ResultSet result = statement.executeQuery();
-
-            while (result.next()) {
-                int drinkId = result.getInt("drink_id");
-                String name = result.getString("name");
-                Double price = result.getDouble("price");
-                int size = result.getInt("size");
-                Boolean withAlcohol = result.getBoolean("withAlcohol");
-
-                drinks.add(new Drink.Builder()
-                        .buildId(drinkId)
-                        .buildName(name)
-                        .buildPrice(price)
-                        .buildSize(size)
-                        .buildWithAlcohol(withAlcohol)
-                        .build());
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return drinks;
-    }
 }

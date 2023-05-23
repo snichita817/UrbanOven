@@ -3,6 +3,7 @@ package repository;
 import model.database.DatabaseConnection;
 import model.product.Pizza;
 import model.product.Topping;
+import service.AuditService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,10 @@ public class PizzaRepository {
             statement.setDouble(3, pizza.getPrice());
             statement.setInt(4, pizza.getSize());
             statement.executeUpdate();
+            AuditService.logAction(
+                    "addPizza",
+                    "INSERT",
+                    "Added pizza with ID: " + pizza.getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,6 +70,10 @@ public class PizzaRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        AuditService.logAction(
+                "getToppingsForPizzaId",
+                "SELECT",
+                "Got pizza toppings list of pizzaId " + pizzaId + " and orderId " + orderId);
         return pizzaToppings;
     }
 
@@ -81,6 +90,12 @@ public class PizzaRepository {
                 String name = result.getString("name");
                 int size = getPizzaSize(pizza_id, order_id);
                 List<Topping> toppings = getToppingsForPizzaId(pizza_id, order_id);
+
+                AuditService.logAction(
+                        "getPizzaById",
+                        "SELECT",
+                        "Got pizza from orderId " + order_id);
+
                 return Optional.of(new Pizza.Builder()
                         .buildId(pizzaId)
                         .buildName(name)
@@ -95,6 +110,7 @@ public class PizzaRepository {
         }
         return Optional.empty();
     }
+
     private static int getPizzaSize(int pizza_id, int order_id) {
         String sql = "SELECT size FROM order_pizzas WHERE pizza_id = ? AND order_id = ?";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -103,6 +119,10 @@ public class PizzaRepository {
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+                AuditService.logAction(
+                        "getPizzaSize",
+                        "SELECT",
+                        "Got pizza size for pizzaId " + pizza_id );
                 return result.getInt("size");
             }
         } catch (SQLException e) {
@@ -110,6 +130,7 @@ public class PizzaRepository {
         }
         return 0;
     }
+
     // Returns the list of pizza with ingredients for the orderID
     public static Optional<List<Pizza>> getPizzasByOrderId(int orderId) {
         String sql = "SELECT * FROM order_pizzas op WHERE op.order_id = ?";
@@ -127,39 +148,21 @@ public class PizzaRepository {
                     pizzas.add(p);
                 }
             }
+            AuditService.logAction(
+                    "getPizzasByOrderId",
+                    "SELECT",
+                    "Got pizzas for orderId " + orderId );
             return Optional.of(pizzas);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        AuditService.logAction(
+                "getPizzasByOrderId",
+                "SELECT",
+                "No pizzas found for orderID " + orderId );
         return Optional.empty();
     }
 
-    public static List<Pizza> getAllPizzas() {
-        List<Pizza> pizzas = new ArrayList<>();
-
-        String sql = "SELECT * FROM pizzas";
-        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            ResultSet result = statement.executeQuery();
-
-            while (result.next()) {
-                int pizzaId = result.getInt("pizza_id");
-                String name = result.getString("name");
-                Double price = result.getDouble("price");
-                int size = result.getInt("size");
-
-                pizzas.add(new Pizza.Builder()
-                        .buildId(pizzaId)
-                        .buildName(name)
-                        .buildPrice(price)
-                        .buildSize(size)
-                        .build());
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pizzas;
-    }
 
 }

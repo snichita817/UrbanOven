@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private static int orderNumber = 0;
+//    private static int orderNumber = 0;
 
     private final int orderId;
     private final Customer customer;
@@ -48,7 +48,7 @@ public class Order {
     }
 
     private Order (Builder builder) {
-        this.orderId = ++orderNumber;
+        this.orderId = builder.orderId;
         this.customer = builder.customer;
         this.products = builder.products;
         this.totalCost = builder.totalCost;
@@ -81,13 +81,17 @@ public class Order {
     }
 
     public static class Builder {
+        private int orderId;
         private Customer customer;
         private List<Product> products;
         private double totalCost = 0.0;
         private StringBuilder orderStatus = new StringBuilder("Pending");
         private Date orderTime = new Date();
         private Date expectedTime;
-
+        public Builder buildOrderId(int orderId) {
+            this.orderId = orderId;
+            return this;
+        }
         public Builder buildOrderStatus(String orderStatus)
         {
             this.orderStatus = new StringBuilder(orderStatus);

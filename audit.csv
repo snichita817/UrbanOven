@@ -1,0 +1,341 @@
+2023-05-23T20:32:50.555927800,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T20:32:50.735447600,initTables,CREATE,Tables created successfully!
+2023-05-23T20:32:50.736446400,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T20:32:50.767363200,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T20:32:50.770354700,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T20:32:50.773348300,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T20:32:50.776338700,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T20:32:50.779332500,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T20:32:50.787310600,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T20:32:50.789304800,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T20:32:50.791298400,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T20:32:50.795288700,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T20:32:50.800274900,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T20:32:50.802270100,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T20:32:50.804264600,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T20:32:50.806258700,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T20:32:50.809250500,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T20:32:50.811247100,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T20:32:50.814241400,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T20:32:50.816232400,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T20:32:50.819226400,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T20:32:50.821218700,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T20:32:50.824211900,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T20:32:50.826206100,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T20:32:50.829198,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T20:32:50.831191900,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T20:32:50.834184500,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T20:32:50.836179300,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T20:32:55.056894200,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T20:32:55.060880400,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T20:32:55.066888800,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T20:32:58.107750900,getCustomerIdByUsername,SELECT,Retrieved customer ID with username user
+2023-05-23T20:32:58.109745700,getCustomerById,SELECT,Retrieved customer with ID 1
+2023-05-23T20:33:01.452302800,deleteCustomer,DELETE,Deleted customer with ID 1
+2023-05-23T20:33:01.455298,addEmployee,INSERT,Added new employee: user
+2023-05-23T20:33:16.951514600,getCustomerByNameAndPassword,SELECT,Customer not found with user user
+2023-05-23T20:33:16.955503100,getEmployeeUd,SELECT,Retrieved employee with ID: 2
+2023-05-23T20:33:16.955503100,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username user
+2023-05-23T20:33:43.363871800,uniqueUsername,SELECT,Unique username check successful
+2023-05-23T20:33:49.257272600,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T20:33:49.300670400,initTables,CREATE,Tables created successfully!
+2023-05-23T20:33:49.301667200,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T20:33:49.347547,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T20:33:49.349540200,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T20:33:49.351534100,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T20:33:49.353534400,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T20:33:49.356521,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T20:33:49.364012400,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T20:33:49.366006500,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T20:33:49.368002200,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T20:33:49.369997800,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T20:33:49.373986300,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T20:33:49.375980700,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T20:33:49.376978600,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T20:33:49.378973300,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T20:33:49.380967700,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T20:33:49.382962,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T20:33:49.384957,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T20:33:49.386953,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T20:33:49.387948400,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T20:33:49.389943500,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T20:33:49.391937400,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T20:33:49.393932600,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T20:33:49.395927900,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T20:33:49.397922300,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T20:33:49.398919300,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T20:33:49.400913800,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T20:33:55.540786600,uniqueUsername,SELECT,Unique username check successful
+2023-05-23T20:34:00.594427,uniqueUsername,SELECT,Unique username check successful
+2023-05-23T20:34:06.288720100,addCustomer,INSERT,Customer added successfully with customerID b: 0
+2023-05-23T21:10:48.488147200,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:10:48.636749200,initTables,CREATE,Tables created successfully!
+2023-05-23T21:10:48.637746500,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:10:48.673650800,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:10:48.675647800,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:10:48.678637600,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:10:48.681629900,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:10:48.683624800,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:10:48.691604100,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:10:48.694595400,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:10:48.696589500,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:10:48.699582700,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:10:48.704568200,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:10:48.707560300,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:10:48.710552300,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:10:48.712547200,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:10:48.715539700,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:10:48.718530500,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:10:48.720525600,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:10:48.722520100,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:10:48.724514700,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:10:48.727506900,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:10:48.729501500,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:10:48.732495100,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:10:48.734489100,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:10:48.737480100,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:10:48.740472,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:10:48.742466600,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:11:28.927883500,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:11:28.932870700,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:11:28.937522700,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:11:35.143623800,getCustomerIdByUsername,SELECT,Retrieved customer ID with username user
+2023-05-23T21:11:35.145589700,getCustomerById,SELECT,Retrieved customer with ID 1
+2023-05-23T21:11:41.610554100,deleteCustomer,DELETE,Deleted customer with ID 1
+2023-05-23T21:11:41.613907,addEmployee,INSERT,Added new employee: user
+2023-05-23T21:11:46.924755100,getEmployeeIdByUsername,SELECT,Employee with username user1 not found
+2023-05-23T21:11:49.331874600,getEmployeeIdByUsername,SELECT,Employee with username user2 not found
+2023-05-23T21:12:11.529996900,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:12:11.585848100,initTables,CREATE,Tables created successfully!
+2023-05-23T21:12:11.585848100,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:12:11.629731300,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:12:11.631725800,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:12:11.633720400,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:12:11.635714800,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:12:11.637708400,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:12:11.646686100,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:12:11.648680,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:12:11.649676900,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:12:11.651672100,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:12:11.655661600,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:12:11.657655500,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:12:11.659652400,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:12:11.660647800,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:12:11.662642600,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:12:11.664637500,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:12:11.666632300,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:12:11.668627600,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:12:11.670620300,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:12:11.672615200,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:12:11.673613900,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:12:11.675608100,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:12:11.677602800,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:12:11.679596600,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:12:11.681592300,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:12:11.683586500,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:12:17.211811700,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:12:17.215802200,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:12:17.219791400,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:12:21.946739600,getEmployeeIdByUsername,SELECT,Employee with username user1 not found
+2023-05-23T21:12:28.674653600,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username user
+2023-05-23T21:12:28.676651900,getEmployeeUd,SELECT,Retrieved employee with ID: 2
+2023-05-23T21:12:49.924604900,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username user
+2023-05-23T21:12:49.926599200,getEmployeeUd,SELECT,Retrieved employee with ID: 2
+2023-05-23T21:13:41.498008,disconnect,close(),The connection to the database closed successfully!
+2023-05-23T21:29:49.474857200,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:29:49.532701300,initTables,CREATE,Tables created successfully!
+2023-05-23T21:29:49.533699200,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:29:49.593539100,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:29:49.595532800,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:29:49.598525600,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:29:49.600519900,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:29:49.602515600,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:29:49.611491800,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:29:49.613485800,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:29:49.615480600,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:29:49.617491100,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:29:49.621466200,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:29:49.623458800,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:29:49.626451200,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:29:49.627449600,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:29:49.629442600,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:29:49.631437900,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:29:49.633432600,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:29:49.635427,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:29:49.637421700,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:29:49.639416700,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:29:49.641412600,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:29:49.643407300,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:29:49.645400300,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:29:49.647395700,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:29:49.649392200,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:29:49.651384100,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:29:54.367515600,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:29:54.372502800,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:29:54.376503,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:30:07.607575500,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username user
+2023-05-23T21:30:07.610567700,getEmployeeUd,SELECT,Retrieved employee with ID: 2
+2023-05-23T21:30:46.259135500,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username user
+2023-05-23T21:30:46.261130,getEmployeeUd,SELECT,Retrieved employee with ID: 2
+2023-05-23T21:30:48.471258,deleteEmployee,DELETE,Deleted employee with ID 2
+2023-05-23T21:35:04.821845700,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:35:04.865727300,initTables,CREATE,Tables created successfully!
+2023-05-23T21:35:04.865727300,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:35:04.906619800,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:35:04.908615200,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:35:04.910608,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:35:04.911605,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:35:04.913599500,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:35:04.921578400,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:35:04.923573400,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:35:04.925569500,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:35:04.927563500,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:35:04.930556100,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:35:04.932550400,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:35:04.934544,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:35:04.936538500,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:35:04.937536800,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:35:04.939530300,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:35:04.941526,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:35:04.943520900,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:35:04.944517800,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:35:04.946513400,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:35:04.947511,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:35:04.949504400,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:35:04.950501900,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:35:04.952496400,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:35:04.954491800,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:35:04.956491300,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:35:22.809085,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:35:22.815069300,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:35:22.819011,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:35:26.564947900,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username admin
+2023-05-23T21:35:26.566945,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:36:12.918742,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:36:12.971601200,initTables,CREATE,Tables created successfully!
+2023-05-23T21:36:12.971601200,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:36:13.017477800,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:36:13.019473400,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:36:13.021467300,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:36:13.023462100,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:36:13.025458,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:36:13.032438300,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:36:13.034433200,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:36:13.036427900,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:36:13.038422700,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:36:13.042418900,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:36:13.044407200,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:36:13.046400700,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:36:13.048395700,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:36:13.050391,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:36:13.051387,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:36:13.053382200,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:36:13.054379300,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:36:13.056385500,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:36:13.058370100,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:36:13.060363400,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:36:13.062358200,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:36:13.064353900,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:36:13.066347300,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:36:13.068342700,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:36:13.070338200,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:36:17.642372800,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:36:17.648329500,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:36:17.652318500,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:36:22.806607,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username admin
+2023-05-23T21:36:22.808599500,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:37:32.130320700,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T21:37:32.188166500,initTables,CREATE,Tables created successfully!
+2023-05-23T21:37:32.189164,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T21:37:32.235040800,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T21:37:32.237036400,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T21:37:32.239030800,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T21:37:32.241025100,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T21:37:32.243019700,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T21:37:32.250998300,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T21:37:32.252993200,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T21:37:32.254987900,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T21:37:32.256982500,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T21:37:32.259974600,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T21:37:32.261970900,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T21:37:32.263964,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T21:37:32.265959300,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T21:37:32.266955400,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T21:37:32.268950800,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T21:37:32.270946100,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T21:37:32.272940,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T21:37:32.274934400,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T21:37:32.276929100,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T21:37:32.277926,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T21:37:32.279920600,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T21:37:32.280918500,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T21:37:32.282912900,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T21:37:32.284907100,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T21:37:32.286903200,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T21:37:35.752424300,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T21:37:35.757411700,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:37:35.762397100,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T21:37:39.081689800,getEmployeeIdByUsername,SELECT,Retrieved employee ID with username admin
+2023-05-23T21:37:39.083691600,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T21:37:48.876505500,getEmployeeIdByUsername,SELECT,Employee with username user not found
+2023-05-23T21:37:58.304559,getOrdersByUserId,SELECT,Retrieved list of all orders
+2023-05-23T21:38:05.739048200,getOrdersById,SELECT,Retrieved list of orders with orderID: 1
+2023-05-23T21:38:08.425565900,getCustomerIdByUsername,SELECT,Customer with username 2 not found
+2023-05-23T21:38:17.403978700,disconnect,close(),The connection to the database closed successfully!
+2023-05-23T22:39:13.806707300,connect,getConnection,A connection to the MySQL database established successfully!
+2023-05-23T22:39:13.862557600,initTables,CREATE,Tables created successfully!
+2023-05-23T22:39:13.863555,initTables,UPDATE,Default values inserted successfully!
+2023-05-23T22:39:13.906441500,addPizza,INSERT,Added pizza with ID: 1
+2023-05-23T22:39:13.909433,addPizza,INSERT,Added pizza with ID: 2
+2023-05-23T22:39:13.912425400,addPizza,INSERT,Added pizza with ID: 3
+2023-05-23T22:39:13.914418700,addPizza,INSERT,Added pizza with ID: 4
+2023-05-23T22:39:13.915416100,addPizza,INSERT,Added pizza with ID: 5
+2023-05-23T22:39:13.922398100,addDrink,INSERT,Drink inserted successfully: 1
+2023-05-23T22:39:13.924392100,addDrink,INSERT,Drink inserted successfully: 2
+2023-05-23T22:39:13.925389300,addDrink,INSERT,Drink inserted successfully: 3
+2023-05-23T22:39:13.927384,addDrink,INSERT,Drink inserted successfully: 4
+2023-05-23T22:39:13.931374100,addTopping,INSERT,Topping inserted successfully: P1
+2023-05-23T22:39:13.933368100,addTopping,INSERT,Topping inserted successfully: P2
+2023-05-23T22:39:13.936362900,addTopping,INSERT,Topping inserted successfully: P3
+2023-05-23T22:39:13.938354100,addTopping,INSERT,Topping inserted successfully: P4
+2023-05-23T22:39:13.940349200,addTopping,INSERT,Topping inserted successfully: P5
+2023-05-23T22:39:13.942344,addTopping,INSERT,Topping inserted successfully: P6
+2023-05-23T22:39:13.943341600,addTopping,INSERT,Topping inserted successfully: P7
+2023-05-23T22:39:13.945337200,addTopping,INSERT,Topping inserted successfully: P8
+2023-05-23T22:39:13.946333600,addTopping,INSERT,Topping inserted successfully: P9
+2023-05-23T22:39:13.948328800,addTopping,INSERT,Topping inserted successfully: P10
+2023-05-23T22:39:13.950323700,addTopping,INSERT,Topping inserted successfully: D1
+2023-05-23T22:39:13.953315300,addTopping,INSERT,Topping inserted successfully: D2
+2023-05-23T22:39:13.956311500,addTopping,INSERT,Topping inserted successfully: D3
+2023-05-23T22:39:13.959299900,addTopping,INSERT,Topping inserted successfully: D4
+2023-05-23T22:39:13.961293900,addTopping,INSERT,Topping inserted successfully: D5
+2023-05-23T22:39:13.963290300,addTopping,INSERT,Topping inserted successfully: D6
+2023-05-23T22:39:17.661381500,getCustomerById,SELECT,Retrieved customer with ID 1
+2023-05-23T22:39:17.667364700,getCustomerByNameAndPassword,SELECT,Retrieved customer with ID 1
+2023-05-23T22:39:35.009012700,addOrder,INSERT,Added order with ID: 0
+2023-05-23T22:39:38.291594600,getCustomerById,SELECT,Retrieved customer with ID 1
+2023-05-23T22:39:38.297574900,getPizzaSize,SELECT,Got pizza size for pizzaId 3
+2023-05-23T22:39:38.303594900,getToppingById,SELECT,Topping retrieved successfully: P1
+2023-05-23T22:39:38.305570600,getToppingById,SELECT,Topping retrieved successfully: P2
+2023-05-23T22:39:38.307547500,getToppingById,SELECT,Topping retrieved successfully: P3
+2023-05-23T22:39:38.309541100,getToppingById,SELECT,Topping retrieved successfully: P6
+2023-05-23T22:39:38.310538200,getToppingById,SELECT,Topping retrieved successfully: P7
+2023-05-23T22:39:38.312532500,getToppingById,SELECT,Topping not found: size
+2023-05-23T22:39:38.315526400,getToppingsForPizzaId,SELECT,Got pizza toppings list of pizzaId 3 and orderId 1
+2023-05-23T22:39:38.315526400,getPizzaById,SELECT,Got pizza from orderId 1
+2023-05-23T22:39:38.316525,getPizzasByOrderId,SELECT,Got pizzas for orderId 1
+2023-05-23T22:39:38.319516400,getDrinkSize,SELECT,Got drink size for drinkId 2 in orderId 1
+2023-05-23T22:39:38.322508600,getToppingById,SELECT,Topping retrieved successfully: D1
+2023-05-23T22:39:38.324504300,getToppingById,SELECT,Topping retrieved successfully: D2
+2023-05-23T22:39:38.325501100,getToppingById,SELECT,Topping not found: size
+2023-05-23T22:39:38.326497400,getToppingsForDrinkId,SELECT,Toppings retrieved successfully for drinkId 2 and orderId 1
+2023-05-23T22:39:38.327494700,getDrinkById,SELECT,Drink retrieved successfully: 2 from order 1
+2023-05-23T22:39:38.327494700,getDrinksByOrderId,SELECT,Got drinks from orderId 1
+2023-05-23T22:39:38.328491800,getOrdersByUserId,SELECT,Retrieved list of orders of customer with customerID: 1
+2023-05-23T22:40:48.055631400,getCustomerByNameAndPassword,SELECT,Customer not found with user admin
+2023-05-23T22:40:48.061613400,getEmployeeUd,SELECT,Retrieved employee with ID: 1
+2023-05-23T22:40:48.064601500,getEmployeeByNameAndPassword,SELECT,Retrieved employee with username admin
+2023-05-23T22:40:51.946846500,getCustomerIdByUsername,SELECT,Retrieved customer ID with username user
+2023-05-23T22:40:51.948845500,getCustomerById,SELECT,Retrieved customer with ID 1
+2023-05-23T22:40:56.481508200,deleteCustomer,DELETE,Deleted customer with ID 1
+2023-05-23T22:40:56.484500100,addEmployee,INSERT,Added new employee: user

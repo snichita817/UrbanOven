@@ -1,10 +1,12 @@
 package model.person;
 
 public class Employee extends Person{
-    private int salary;
+    private int employee_id;
+    private double salary;
     private StringBuilder ranking;
 
     private Employee(Builder builder) {
+        this.employee_id = builder.employee_id;
         this.password = builder.password;
         this.userName = builder.userName;
         this.firstName = builder.firstName;
@@ -18,15 +20,19 @@ public class Employee extends Person{
 
 
     public static class Builder{
+        private int employee_id;
         private StringBuilder password;
         private StringBuilder userName;
         private StringBuilder firstName;
         private StringBuilder lastName;
         private StringBuilder address;
         private StringBuilder phoneNumber;
-        public int salary;
+        public double salary;
         public StringBuilder ranking;
-
+        public Builder buildId(int employee_id) {
+            this.employee_id = employee_id;
+            return this;
+        }
         public Builder buildUserName(String userName) {
             this.userName = new StringBuilder(userName);
             return this;
@@ -41,7 +47,7 @@ public class Employee extends Person{
             this.firstName = new StringBuilder(firstName);
             return this;
         }
-        public Builder buildSalary(int salary) {
+        public Builder buildSalary(double salary) {
             this.salary = salary;
             return this;
         }
@@ -67,11 +73,14 @@ public class Employee extends Person{
         }
 
     }
-    public int getSalary() {
+    public int getEmployee_id() {
+        return employee_id;
+    }
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

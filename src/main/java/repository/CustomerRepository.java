@@ -3,6 +3,7 @@ package repository;
 import main.Main;
 import model.database.DatabaseConnection;
 import model.person.Customer;
+import service.AuditService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,10 +33,20 @@ public class CustomerRepository {
                 statement.setInt(7, customer.getId());
             }
             statement.executeUpdate();
+
+            if(sql.startsWith("UPDATE")) {
+                AuditService.logAction("editCustomer", "UPDATE", "Customer updated successfully with customerID: " + customer.getId());
+            }
+            else {
+                AuditService.logAction("addCustomer", "INSERT", "Customer added successfully with customerID b: " + customer.getId());
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction("executeCustomerUpdate", "INSERT/UPDATE", "An exception occurred: " + e.getMessage());
         }
     }
+
     public static boolean uniqueUsername(String username) {
         String sql = "SELECT COUNT(*) FROM customers c WHERE c.username = ?";
 
@@ -44,11 +55,13 @@ public class CustomerRepository {
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
                     int count = resultSet.getInt(1);
+                    AuditService.logAction("uniqueUsername", "SELECT", "Unique username check successful");
                     return count == 0;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction("uniqueUsername", "SELECT", "An exception occurred: " + e.getMessage());
         }
         return false;
     }
@@ -58,8 +71,10 @@ public class CustomerRepository {
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, customerId);
             statement.executeUpdate();
+            AuditService.logAction("deleteCustomer", "DELETE", "Deleted customer with ID " + customerId);
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction("deleteCustomer", "DELETE", "An exception occurred: " + e.getMessage());
         }
     }
 
@@ -75,6 +90,10 @@ public class CustomerRepository {
 
                     Customer customer = getCustomerById(customerId).orElse(null);
                     if (customer != null) {
+                        AuditService.logAction(
+                                "getCustomerByNameAndPassword",
+                                "SELECT",
+                                "Retrieved customer with ID " + customerId);
                         return Optional.of(customer);
                     }
                 }
@@ -82,9 +101,15 @@ public class CustomerRepository {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction("getCustomerByNameAndPassword", "SELECT", "An exception occurred: " + e.getMessage());
         }
+        AuditService.logAction(
+                "getCustomerByNameAndPassword",
+                "SELECT",
+                "Customer not found with user " + username);
         return Optional.empty();
     }
+
     public static Optional<Customer> getCustomerById(int id) {
         String sql = "SELECT * FROM customers c where c.customer_id = ?";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -100,6 +125,10 @@ public class CustomerRepository {
                 String lastName = result.getString("lastName");
                 String phoneNumber = result.getString("phoneNumber");
                 String address = result.getString("address");
+                AuditService.logAction(
+                        "getCustomerById",
+                        "SELECT",
+                        "Retrieved customer with ID " + customerId);
                 return Optional.of(new Customer.Builder()
                         .buildId(id)
                         .buildUserName(username)
@@ -112,7 +141,46 @@ public class CustomerRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            AuditService.logAction(
+                    "getCustomerById",
+                    "SELECT",
+                    "An exception occurred: " + e.getMessage());
         }
+        AuditService.logAction(
+                "getCustomerById",
+                "SELECT",
+                "Customer not found with ID " + id);
+        return Optional.empty();
+    }
+
+    public static Optional<Integer> getCustomerIdByUsername(String username) {
+        String sql = "SELECT customer_id FROM customers c WHERE c.username = ?";
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, username);
+
+            try(ResultSet result = statement.executeQuery()) {
+                if(result.next()) {
+                    // move cursor
+                    int customerId = result.getInt(1);
+                    AuditService.logAction(
+                            "getCustomerIdByUsername",
+                            "SELECT",
+                            "Retrieved customer ID with username " + username);
+                    return Optional.of(customerId);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            AuditService.logAction(
+                    "getCustomerIdByUsername",
+                    "SELECT",
+                    "An exception occurred: " + e.getMessage());
+        }
+        AuditService.logAction(
+                "getCustomerIdByUsername",
+                "SELECT",
+                "Customer with username " + username + " not found");
         return Optional.empty();
     }
 }
